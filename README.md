@@ -22,10 +22,14 @@ For development you need an IDE that supports both Java and Maven. I recommend [
 
 ##### Install All Required Plugins, Run Any Required Tests, and Build Docker Image:
 
-To deploy image to ECR after building, replace install with deploy.
-
 ```
 mvn clean install
+```
+
+To deploy image to ECR after building,
+
+```
+mvn clean deploy
 ```
 
 ##### View Image By Running:
