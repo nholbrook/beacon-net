@@ -20,7 +20,7 @@ For development you need an IDE that supports both Java and Maven. I recommend [
 
 ### Building / Testing / Running
 
-##### Install All Required Plugins, Run Any Required Tests, and Build Docker Image:
+##### Install All Required Plugins, Run Any Required Tests, Build Docker Image, and Launch All Required Images:
 
 ```
 mvn clean install
@@ -32,14 +32,6 @@ You should see an image listed as `nickholbrook/beacon-net`
 
 ```
 docker images
-```
-
-##### Launch All Required Images:
-
-This will start local containers for all required images on your computer. You can access this at http://localhost:8080.
-
-```
-docker-compose up
 ```
 
 ##### View Running Containers Started From docker-compose:
@@ -60,6 +52,8 @@ docker-compose stop
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Docker](https://www.docker.com) - Used to Containerize Application
 * [Docker Compose](https://www.docker.com) - Used to Automate Docker Deployments
+* [Docker Maven Plugin](https://github.com/spotify/docker-maven-plugin)
+* [Docker Compose Maven Plugin](https://github.com/dkanejs/docker-compose-maven-plugin)
 
 
 ## Authors
