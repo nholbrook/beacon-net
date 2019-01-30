@@ -39,7 +39,7 @@ docker images
 This will start local containers for all required images on your computer. You can access this at http://localhost:8080.
 
 ```
-docker-compose up -d
+docker-compose up
 ```
 
 ##### View Running Containers Started From docker-compose:
