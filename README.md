@@ -20,7 +20,9 @@ For development you need an IDE that supports both Java and Maven. I recommend [
 
 ### Building / Testing / Running
 
-##### Install All Required Plugins, Run Any Required Tests, Build Docker Image, and Launch All Required Images:
+##### Install All Required Plugins, Run Any Required Tests, and Build Docker Image:
+
+To deploy image to ECR after building, replace install with deploy.
 
 ```
 mvn clean install
@@ -28,10 +30,16 @@ mvn clean install
 
 ##### View Image By Running:
 
-You should see an image listed as `nickholbrook/beacon-net`
+You should see an image listed as `905204647763.dkr.ecr.us-east-1.amazonaws.com/beacon-net`
 
 ```
 docker images
+```
+
+##### Start All Required Containers:
+
+```
+docker-compose up
 ```
 
 ##### View Running Containers Started From docker-compose:
