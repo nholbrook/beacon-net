@@ -40,6 +40,12 @@ docker images
 docker-compose ps
 ```
 
+##### View Logs From Containers Started From docker-compose:
+
+```
+docker-compose logs
+```
+
 ##### Stop All Containers Started From docker-compose:
 
 ```
