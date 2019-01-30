@@ -23,7 +23,7 @@ For development you need an IDE that supports both Java and Maven. I recommend [
 ##### Install All Required Plugins, Run Any Required Tests, and Build Docker Image:
 
 ```
-mvn clean package
+mvn clean install
 ```
 
 ##### View Image By Running:
