@@ -52,8 +52,8 @@ docker-compose stop
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [Docker](https://www.docker.com) - Used to Containerize Application
 * [Docker Compose](https://www.docker.com) - Used to Automate Docker Deployments
-* [Docker Maven Plugin](https://github.com/spotify/docker-maven-plugin)
-* [Docker Compose Maven Plugin](https://github.com/dkanejs/docker-compose-maven-plugin)
+* [Docker Maven Plugin](https://github.com/spotify/docker-maven-plugin) - Used to Integrate Docker with Maven 
+* [Docker Compose Maven Plugin](https://github.com/dkanejs/docker-compose-maven-plugin) - Used to Integrate Docker Compose with Maven
 
 
 ## Authors
