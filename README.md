@@ -26,7 +26,7 @@ For development you need an IDE that supports both Java and Maven. I recommend [
 mvn clean install
 ```
 
-To deploy image to ECR after building,
+To deploy image to ECR after building, instead run
 
 ```
 mvn clean deploy
