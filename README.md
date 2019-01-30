@@ -14,13 +14,63 @@ You will also need to install [JDK 1.8](https://www.oracle.com/technetwork/java/
 
 For development you need an IDE that supports both Java and Maven. I recommend [IntelliJ](https://www.jetbrains.com/idea/), but [Eclipse](https://www.eclipse.org) and other similar IDEs should work just fine.
 
+Finally, you will need to install [AWS-CLI](https://aws.amazon.com/cli/). 
+
+##### Login using your *personal* access key id, secret access key, and `us-east-1` for the region:
+
+```
+aws configure
+```
+
+then run
+
+```
+aws ecr get-login --no-include-email
+```
+
+You will need these values when configuring your Maven settings file in the next step.
+
+##### Create your local Maven settings file:
+
+```
+vim ~/.m2/settings.xml
+```
+
+and paste the following text replacing the [id] and [password] using the values from the last step. 
+
+```
+<settings>
+  <servers>
+    <server>
+      <id>[id].dkr.ecr.us-east-1.amazonaws.com</id>
+      <username>AWS</username>
+      <password>[password]</password>
+    </server>
+  </servers>
+</settings>
+```
+
+##### Create a .env file within your projects root directory:
+
+```
+vim .env
+```
+
+and paste the following text replacing [aws_access_key_id] and [aws_secret_access_key] with the provided **frontend** access key id and secret access key.
+
+```
+AWS_ACCESS_KEY_ID=[aws_access_key_id]
+AWS_SECRET_ACCESS_KEY=[aws_secret_access_key]
+AWS_REGION=us-east-1
+```
+
 ##### Ensure your PATH variables are set correctly by running:
 
 `mvn -version` & `java -version` & `docker --version` & `docker-container --version`
 
 ### Building / Testing / Running
 
-##### Install All Required Plugins, Run Any Required Tests, and Build Docker Image:
+##### Install all required plugins, run any required tests, and build docker image:
 
 ```
 mvn clean install
@@ -32,7 +82,7 @@ To deploy image to ECR after building, instead run
 mvn clean deploy
 ```
 
-##### View Image By Running:
+##### View image by running:
 
 You should see an image listed as `905204647763.dkr.ecr.us-east-1.amazonaws.com/beacon-net`
 
@@ -40,25 +90,25 @@ You should see an image listed as `905204647763.dkr.ecr.us-east-1.amazonaws.com/
 docker images
 ```
 
-##### Start All Required Containers:
+##### Start all required containers:
 
 ```
 docker-compose up
 ```
 
-##### View Running Containers Started From docker-compose:
+##### View running containers started from docker-compose:
 
 ```
 docker-compose ps
 ```
 
-##### View Logs From Containers Started From docker-compose:
+##### View logs from containers started from docker-compose:
 
 ```
 docker-compose logs
 ```
 
-##### Stop All Containers Started From docker-compose:
+##### Stop all containers started from docker-compose:
 
 ```
 docker-compose stop
