@@ -14,7 +14,7 @@ EXPOSE 8080
 ARG JAR_FILE=target/beacon-net-0.0.1.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} beacon-net.jar
+COPY ${JAR_FILE} beacon-net.jar
 
 # Run the jar file
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/beacon-net.jar"]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              #ENTRYPOINT ["java","-cp","app:app/lib/*","com.nickholbrook.beaconnet.Beaco
