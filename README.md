@@ -128,5 +128,3 @@ docker-compose stop
 ## Authors
 
 * **Nick Holbrook** - *Software Development* - [ndh175](https://github.com/ndh175)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
