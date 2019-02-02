@@ -128,3 +128,4 @@ docker-compose stop
 ## Authors
 
 * **Nick Holbrook** - *Software Development* - [ndh175](https://github.com/ndh175)
+* **Emily Locke** - [emilyelocke](https://github.com/emilyelocke)
