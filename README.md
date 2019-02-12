@@ -125,7 +125,7 @@ docker-compose stop
 * [Docker Maven Plugin](https://github.com/spotify/dockerfile-maven) - Used to Integrate Docker with Maven 
 * [Docker Compose Maven Plugin](https://github.com/dkanejs/docker-compose-maven-plugin) - Used to Integrate Docker Compose with Maven
 * [Thymeleaf](https://www.thymeleaf.org) - Used for HTML Templating
-* [CoreUI](https://github.com/coreui/coreui-free-angular-admin-template) - UI Design
+* [CoreUI](https://github.com/coreui/coreui-free-angular-admin-template) - Frontend UI Desig
 
 ## Authors
 
