@@ -78,10 +78,10 @@ AWS_REGION=us-east-1
 mvn clean install
 ```
 
-To deploy image to ECR after building, instead run
+To install without running tests, instead run
 
 ```
-mvn clean deploy
+mvn clean install -DskipTests
 ```
 
 ##### View image by running:
