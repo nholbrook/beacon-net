@@ -38,13 +38,13 @@ You will need these values when configuring your Maven settings file in the next
 vim ~/.m2/settings.xml
 ```
 
-and paste the following text replacing the [id] and [password] using the values from the last step. 
+and paste the following text replacing the [password] using the value from the last step. 
 
 ```
 <settings>
   <servers>
     <server>
-      <id>[id].dkr.ecr.us-east-1.amazonaws.com</id>
+      <id>905204647763.dkr.ecr.us-east-1.amazonaws.com</id>
       <username>AWS</username>
       <password>[password]</password>
     </server>
