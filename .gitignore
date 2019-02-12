@@ -26,3 +26,7 @@
 
 ## Env ##
 .env
+
+## Node / NPM ##
+**/node
+**/node_modules
