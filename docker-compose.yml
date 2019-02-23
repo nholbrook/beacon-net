@@ -1,8 +1,8 @@
 version: "3"
 services:
-  web:
-    image: 905204647763.dkr.ecr.us-east-1.amazonaws.com/beacon-net
-    ports:
-      - "8080:8080"
-    env_file:
-      - .env
+    web:
+      image: 905204647763.dkr.ecr.us-east-1.amazonaws.com/beacon-net
+      ports:
+        - "8080:8080"
+      env_file:
+        - .env
