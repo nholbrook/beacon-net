@@ -20,13 +20,13 @@
     "js": "npm-run-all --parallel js-compile* js-lint*",
     "js-compile": "cross-env PLUGINS=true babel src/main/resources/templates/js/src/ --out-dir src/main/resources/templates/js/ --source-maps",
     "js-lint": "eslint src/main/resources/templates/js/src",
-    "localhost": "browser-sync start --server \"./src/main/resources/templates\" --serveStatic \"./\" --files \"!./src/main/resources/templates/js/src/**/*, ./src/main/resources/templates/**/*, !./src/main/resources/templates/scss/**/*\"",
+    "localhost": "browser-sync start --server \"./src/main/resources/templates\" --serveStatic \"./src/main/resources/static\" --files \"./src/main/resources/static\"",
     "localhost-dist": "browser-sync start --server \"./dist\"",
     "pug": "node build/pug.js",
     "release-version": "node build/change-version.js",
     "serve": "npm-run-all --parallel localhost watch-css watch-js",
     "watch-css": "nodemon --ignore dist/ -e scss -x \"npm run css\"",
-    "watch-js": "nodemon --watch src/main/resources/templates/js/src/ -x \"npm run js\"",
+    "watch-js": "nodemon --watch src/main/resources/static/js/ -x \"npm run js\"",
     "watch-pug": "nodemon -e pug -x \"npm run pug\""
   },
   "dependencies": {
