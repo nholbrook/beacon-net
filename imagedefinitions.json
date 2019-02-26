@@ -1,6 +1,6 @@
 [
     {
-        "name": "beacon-net-production",
+        "name": "beacon-net",
         "imageUri": "905204647763.dkr.ecr.us-east-1.amazonaws.com/beacon-net:latest"
     }
 ]
