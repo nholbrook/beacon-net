@@ -1,6 +1,6 @@
 # Beacon Net
 
-Oakland University Computer Science Sophomore Project. 
+Oakland University Computer Science Sophomore Project.  
 
 ## Getting Started
 
