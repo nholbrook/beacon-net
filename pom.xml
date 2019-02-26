@@ -33,7 +33,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.amazonaws</groupId>
+			<!--<groupId>com.amazonaws</groupId>-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
