@@ -20,7 +20,7 @@
     "js": "npm-run-all --parallel js-compile* js-lint*",
     "js-compile": "cross-env PLUGINS=true babel src/main/resources/templates/js/src/ --out-dir src/main/resources/templates/js/ --source-maps",
     "js-lint": "eslint src/main/resources/templates/js/src",
-    "localhost": "browser-sync start --server \"./src/main/resources/templates\" --serveStatic \"./src/main/resources/static\" --files \"./src/main/resources/static\"",
+    "localhost": "browser-sync start --server \"./src/main/resources/templates\" --serveStatic \"./src/main/resources/static\" \".\" --files \"./src/main/resources/static\" \".\"",
     "localhost-dist": "browser-sync start --server \"./dist\"",
     "pug": "node build/pug.js",
     "release-version": "node build/change-version.js",
