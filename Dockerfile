@@ -16,8 +16,5 @@ ARG JAR_FILE=target/beacon-net-0.0.1.jar
 # Add the application's jar to the container
 COPY ${JAR_FILE} beacon-net.jar
 
-ENV AWS_ACCESS_KEY_ID="AKIAI6VGRK5XKYEM5BCQ"
-ENV AWS_SECRET_ACCESS_KEY="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"
-
 # Run the jar file
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/beacon-net.jar"]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              #ENTRYPOINT ["java","-cp","app:app/lib/*","com.nickholbrook.beaconnet.Beaco
