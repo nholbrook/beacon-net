@@ -5,16 +5,21 @@ let concat = require("gulp-concat");
 let uglify = require('gulp-uglify-es').default;
 let csso = require('gulp-csso');
 let rename = require('gulp-rename');
-var browserSync = require('browser-sync').create();
+let browserSync = require('browser-sync').create();
+let htmlbeautify = require('gulp-html-beautify');
 
 var paths = {
   styles: {
     src: "src/main/resources/static/css/src/**/*.scss",
     dest: "src/main/resources/static/css/dist"
-},
+  },
   scripts: {
     src: "src/main/resources/static/js/src/**/*.js",
     dest: "src/main/resources/static/js/dist"
+  },
+  templates: {
+    src: "src/main/resources/templates/*.html",
+    dest: "src/main/resources/templates"
   }
 };
 
@@ -43,6 +48,16 @@ function script() {
     );
 }
 
+function beautify(){
+  var options = {
+    "indent_size": 4,
+    "indent_with_tabs": true
+  };
+  return gulp.src(paths.templates.src)
+    .pipe(htmlbeautify(options))
+    .pipe(gulp.dest(paths.templates.dest));
+}
+
 function watch(){
   gulp.watch(paths.styles.src, style);
   gulp.watch(paths.scripts.src, script);
@@ -61,3 +76,4 @@ exports.style = style;
 exports.script = script;
 exports.watch = watch;
 exports.serve = serve;
+exports.beautify = beautify;

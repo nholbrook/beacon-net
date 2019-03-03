@@ -37,13 +37,4 @@ public class EntryServiceController {
 	public ResponseEntity<Object> get(@PathVariable("id") String id) {
 		return entryService.getEntry(id);
 	}
-
-
-	@RequestMapping(value = "/api/entry")
-	public ResponseEntity<Object> get() {
-		return entryService.getAllEntries();
-	}
-
-
-
 }
