@@ -1,4 +1,5 @@
-import $ from 'jquery';
+import $ from 'jquery'
+
 /**
  * --------------------------------------------------------------------------
  * CoreUI Free Boostrap Admin Template (v2.1.11): tooltips.js
@@ -6,5 +7,4 @@ import $ from 'jquery';
  * --------------------------------------------------------------------------
  */
 
-$('[data-toggle="tooltip"]').tooltip();
-//# sourceMappingURL=tooltips.js.map
+$('[data-toggle="tooltip"]').tooltip()

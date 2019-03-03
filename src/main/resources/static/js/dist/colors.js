@@ -1,5 +1,6 @@
 /* global rgbToHex */
-import $ from 'jquery';
+import $ from 'jquery'
+
 /**
  * --------------------------------------------------------------------------
  * CoreUI Free Boostrap Admin Template (v2.1.11): colors.js
@@ -8,7 +9,7 @@ import $ from 'jquery';
  */
 
 $('.theme-color').each(function () {
-  const Color = $(this).css('backgroundColor');
+  const Color = $(this).css('backgroundColor')
   $(this).parent().append(`
     <table class="w-100">
       <tr>
@@ -20,6 +21,5 @@ $('.theme-color').each(function () {
         <td class="font-weight-bold">${Color}</td>
       </tr>
     </table>
-  `);
-});
-//# sourceMappingURL=colors.js.map
+  `)
+})

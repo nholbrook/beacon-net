@@ -24,9 +24,6 @@
 /.nb-gradle/
 /build/
 
-## Env ##
-.env
-
 ## Node / NPM ##
 **/node
 **/node_modules

@@ -1,4 +1,5 @@
-import $ from 'jquery';
+import $ from 'jquery'
+
 /**
  * --------------------------------------------------------------------------
  * CoreUI Free Boostrap Admin Template (v2.1.11): popovers.js
@@ -6,8 +7,7 @@ import $ from 'jquery';
  * --------------------------------------------------------------------------
  */
 
-$('[data-toggle="popover"]').popover();
+$('[data-toggle="popover"]').popover()
 $('.popover-dismiss').popover({
   trigger: 'focus'
-});
-//# sourceMappingURL=popovers.js.map
+})

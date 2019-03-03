@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Beacon Net - Raw</title>
+    <base href="/">
+    <!-- Icons-->
+    <link rel="stylesheet" type="text/css" href="node_modules/@coreui/icons/css/coreui-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
+    <!-- Main styles for this application-->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
+    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      // Shared ID
+      gtag('config', 'UA-118965717-3');
+      // Bootstrap ID
+      gtag('config', 'UA-118965717-5');
+    </script>
+  </head>
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <header class="app-header navbar">
+      <a class="navbar-brand" href="#">
+        <!-- Logo img
+        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
+      -->
+      <h4 class="logo mb-0">BEACON NET</h4>
+
+        <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+      </a>
+
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item d-md-down-none">
+          <a class="nav-link" href="#">
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <img class="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-header text-center">
+              <strong>Account</strong>
+            </div>
+            <!-- <a class="dropdown-item" href="#">
+              <i class="fa fa-bell-o"></i> Updates
+              <span class="badge badge-info">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-envelope-o"></i> Messages
+              <span class="badge badge-success">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-tasks"></i> Tasks
+              <span class="badge badge-danger">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-comments"></i> Comments
+              <span class="badge badge-warning">42</span>
+            </a>
+            <div class="dropdown-header text-center">
+              <strong>Settings</strong>
+            </div>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-user"></i> Profile</a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-wrench"></i> Settings</a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-usd"></i> Payments
+              <span class="badge badge-secondary">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-file"></i> Projects
+              <span class="badge badge-primary">42</span>
+            </a> -->
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-lock"></i> Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </header>
+    <div class="app-body">
+      <div class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="nav-icon icon-speedometer"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-title">Map Management</li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Second Level Concourse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Map 2</a>
+            </li>
+            <li class="nav-title">Beacon Management</li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Place and rename beacons</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">View beacon connection status</a>
+              </li>
+              </ul>
+            </li>
+            </li>
+          </ul>
+        </nav>
+        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+      </div>
+
+        <main class="main">
+            <!-- Breadcrumb-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item">
+                    <a href="#">Admin</a>
+                </li>
+                <li class="breadcrumb-item active">Raw</li>
+                <!-- Breadcrumb Menu-->
+                <li class="breadcrumb-menu d-md-down-none">
+                    <div class="btn-group" role="group" aria-label="Button group">
+
+                        <!-- Trigger/open filter modal -->
+                        <div class="btn btn-filter" data-toggle="modal" data-target="#filterModal">Filter</div>
+                </li>
+            </ol>
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Available from</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${productList}">
+                            <td>XXX</td>
+                            <td th:text="${product.description}">Red chair</td>
+                            <td th:text="${'$' + #numbers.formatDecimal(product.price, 1, 2)}">$350</td>
+                            <td th:text="${#dates.format(product.availableFrom, 'dd-MMM-yyyy')}">28-Jun-2013</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </main>
+
+
+      <!-- Filter Modal -->
+      <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filtereModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="filtereModalLabel">Filter map locations</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Point A</p>
+                  <form action="#">
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Ticket Counter</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Security</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Gate A1</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Gate A2</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Gate A3</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Baggage Claim</span>
+                      </label>
+                    </p>
+                  </form>
+                </div>
+                <div class="col-md-6">
+                  <p>Point B</p>
+                  <form action="#">
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Ticket Counter</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Security</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Gate A1</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Gate A2</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Gate A3</span>
+                      </label>
+                    </p>
+                    <p>
+                      <label>
+                        <input type="checkbox" />
+                        <span>Baggage Claim</span>
+                      </label>
+                    </p>
+                  </form>
+                </div>
+                  <form id="filter-date-form">
+                    From
+                    <input type="date" name="filter-from">
+                    To
+                    <input type="date" name="filter-to">
+                  </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Apply filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Filter Modal -->
+      <!-- Add Map Modal -->
+      <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addModalLabel">Upload Map</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Apply filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Add Map Modal -->
+    <!-- CoreUI and necessary plugins-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/pace-progress/pace.min.js"></script>
+    <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
+    <!-- Plugins and scripts required by this view-->
+    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

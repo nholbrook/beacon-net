@@ -6,29 +6,6 @@
     "name": "Nick Holbrook"
   },
   "main": "src/main/resources/templates/index.html",
-  "scripts": {
-    "build": "npm-run-all build-clean build-copy build-vendors",
-    "build-clean": "rimraf dist",
-    "build-copy": "copyfiles -a -e \"src/main/resources/templates/scss/**/*\" -u 1 \"src/main/resources/templates/**/*\" dist/",
-    "build-vendors": "node build/vendors.js",
-    "css": "npm-run-all --parallel css-compile* --sequential css-prefinpm  css-minify*",
-    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 src/main/resources/templates/scss/style.scss src/main/resources/templates/css/style.css",
-    "css-compile-vendors": "node build/vendors-sass.js",
-    "css-lint": "stylelint --config build/.stylelintrc --syntax scss \"src/main/resources/templates/scss/**/*.scss\"",
-    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output src/main/resources/templates/css/style.min.css src/main/resources/templates/css/style.css",
-    "css-prefix": "postcss --config build/postcss.config.js --replace \"src/main/resources/templates/css/*.css\" \"!src/main/resources/templates/css/*.min.css\"",
-    "js": "npm-run-all --parallel js-compile* js-lint*",
-    "js-compile": "cross-env PLUGINS=true babel src/main/resources/templates/js/src/ --out-dir src/main/resources/templates/js/ --source-maps",
-    "js-lint": "eslint src/main/resources/templates/js/src",
-    "localhost": "browser-sync start --server \"./src/main/resources/templates\" --serveStatic \"./src/main/resources/static\" \".\" --files \"./src/main/resources/static\" \".\"",
-    "localhost-dist": "browser-sync start --server \"./dist\"",
-    "pug": "node build/pug.js",
-    "release-version": "node build/change-version.js",
-    "serve": "npm-run-all --parallel localhost watch-css watch-js",
-    "watch-css": "nodemon --ignore dist/ -e scss -x \"npm run css\"",
-    "watch-js": "nodemon --watch src/main/resources/static/js/ -x \"npm run js\"",
-    "watch-pug": "nodemon -e pug -x \"npm run pug\""
-  },
   "dependencies": {
     "@coreui/coreui": "^2.1.5",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "1.2.0",
@@ -45,6 +22,14 @@
     "simple-line-icons": "2.4.1"
   },
   "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-csso": "^3.0.1",
+    "gulp-rename": "^1.4.0",
+    "browser-sync": "^2.26.3",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
@@ -52,7 +37,6 @@
     "autoprefixer": "^9.4.4",
     "babel-eslint": "^10.0.1",
     "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
-    "browser-sync": "^2.26.3",
     "chalk": "^2.4.2",
     "clean-css-cli": "^4.2.1",
     "copyfiles": "^2.1.0",
@@ -73,20 +57,5 @@
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^2.0.0",
     "stylelint-scss": "^3.4.4"
-  },
-  "engines": {
-    "node": ">=6"
-  },
-  "browserslist": [
-    "last 1 major version",
-    ">= 1%",
-    "Chrome >= 45",
-    "Firefox >= 38",
-    "Edge >= 12",
-    "Explorer >= 10",
-    "iOS >= 9",
-    "Safari >= 9",
-    "Android >= 4.4",
-    "Opera >= 30"
-  ]
+  }
 }
