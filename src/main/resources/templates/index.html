@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Beacon Net</title>
     <!-- Icons-->
-    <link rel="stylesheet" type="text/css" href="node_modules/@coreui/icons/css/coreui-icons.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
     <!-- Main styles for this application-->
     <link href="css/dist/style.css" rel="stylesheet">
@@ -119,9 +116,6 @@
           <!-- Breadcrumb Menu-->
           <li class="breadcrumb-menu d-md-down-none">
             <div class="btn-group" role="group" aria-label="Button group">
-
-                <!-- Trigger/open filter modal -->
-              <div class="btn btn-filter" data-toggle="modal" data-target="#filterModal">Filter</div>
           </li>
         </ol>
         <div class="container-fluid">
@@ -134,17 +128,17 @@
                     <h4 class="card-title mb-0">Traffic</h4>
                     <div class="small text-muted">November 2018</div>
                     <div class="small text-muted">Map: Second level concourse</div>
-                    <div class="small text-muted">Filter: No filter applied</div>
+                    <div class="small text-muted" id="filterdisplaytitle">Filter:</div>
+                    <div class="small text-muted" id="filterdisplay1"></div>
+                    <div class="small text-muted" id="filterdisplay2"></div>
                   </div>
                   <!-- /.col-->
                   <div class="col-sm-7 d-none d-md-block">
-                    <!-- Trigger/open add map modal -->
-                    <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal" type="button">
-                      <img class="icon-cloud-add" src="icons/add.png" title="Add map" alt="Add Map">
-                    </button>
-                    <button class="btn btn-primary float-right" type="button">
-                      <img class="icon-cloud-download" src="icons/cloud-download.png" title="Download map" alt="Download Map">
-                    </button>
+
+                    <!-- Trigger/open filter modal -->
+                    <div class="btn btn-primary float-right" data-toggle="modal" data-target="#filterModal">
+                    <!-- /Trigger/open filter modal -->
+                    <img class="filter-btn" src="icons/cloud-download.png" title="Filter map" alt="Filter map"></div>
                     <div class="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
                       <label class="btn btn-outline-secondary">
                         <input id="option1" type="radio" name="options" autocomplete="off"> Day
@@ -161,8 +155,8 @@
                 </div>
                 <!-- /.row-->
                 <div class="chart-wrapper" style="height:300px;margin-top:40px;">
-                  <img class="center-block" src="https://s3.amazonaws.com/beacon-net/aiport-terminal.jpg">
-                  <!-- <canvas class="chart" id="main-chart"></canvas> -->
+
+
                 </div>
               </div>
               <div class="card-footer">
@@ -453,86 +447,27 @@
             </div>
             <div class="modal-body">
               <div class="row">
+                <!-- Left column -->
                 <div class="col-md-6">
                   <p>Point A</p>
-                  <form action="#">
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Ticket Counter</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Security</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Gate A1</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Gate A2</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Gate A3</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Baggage Claim</span>
-                      </label>
-                    </p>
+                  <form>
+                    <p><label><input type="checkbox" value="Ticket counter" name="locationA"> Ticket counter</label></p>
+                    <p><label><input type="checkbox" value="Security" name="locationA"> Security</label></p>
+                    <p><label><input type="checkbox" value="Gate A" name="locationA"> Gate A</label></p>
+                    <p><label><input type="checkbox" value="Gate B" name="locationA"> Gate B</label></p>
+                    <p><label><input type="checkbox" value="Gate C" name="locationA"> Gate C</label></p>
+                    <p><label><input type="checkbox" value="Baggage claim" name="locationA"> Baggage claim</label></p>
                   </form>
                 </div>
                 <div class="col-md-6">
                   <p>Point B</p>
-                  <form action="#">
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Ticket Counter</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Security</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Gate A1</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Gate A2</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Gate A3</span>
-                      </label>
-                    </p>
-                    <p>
-                      <label>
-                        <input type="checkbox" />
-                        <span>Baggage Claim</span>
-                      </label>
-                    </p>
+                  <form>
+                    <p><label><input type="checkbox" value="Ticket counter" name="locationB"> Ticket counter</label></p>
+                    <p><label><input type="checkbox" value="Security" name="locationB"> Security</label></p>
+                    <p><label><input type="checkbox" value="Gate A" name="locationB"> Gate A</label></p>
+                    <p><label><input type="checkbox" value="Gate B" name="locationB"> Gate B</label></p>
+                    <p><label><input type="checkbox" value="Gate C" name="locationB"> Gate C</label></p>
+                    <p><label><input type="checkbox" value="Baggage claim" name="locationB"> Baggage claim</label></p>
                   </form>
                 </div>
                   <form id="filter-date-form">
@@ -544,13 +479,15 @@
               </div>
             </div>
             <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="filterbtnapply">Apply filter</button>
+              <button type="button" class="btn btn-secondary" id="filterbtnclear">Clear filter</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Apply filter</button>
             </div>
           </div>
         </div>
       </div>
       <!-- /Filter Modal -->
+<<<<<<< HEAD
       <!-- Add Map Modal -->
       <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -572,7 +509,22 @@
         </div>
       </div>
       <!-- /Add Map Modal -->
+=======
+
+    </div>
+    <footer class="app-footer">
+      <div>
+        <a href="https://coreui.io">CoreUI</a>
+        <span>&copy; 2018 creativeLabs.</span>
+      </div>
+      <div class="ml-auto">
+        <span>Powered by</span>
+        <a href="https://coreui.io">CoreUI</a>
+      </div>
+    </footer>
+>>>>>>> 9f98a6190f540d59f0eee444b824e6172e41ebde
     <!-- CoreUI and necessary plugins-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -582,6 +534,11 @@
     <!-- Plugins and scripts required by this view-->
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
+<<<<<<< HEAD
     <script src="js/dist/main.js"></script>
+=======
+    <script src="js/main.js"></script>
+    <script src="js/filter.js"></script>
+>>>>>>> 9f98a6190f540d59f0eee444b824e6172e41ebde
   </body>
 </html>
