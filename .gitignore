@@ -27,3 +27,6 @@
 ## Node / NPM ##
 **/node
 **/node_modules
+
+**/application.properties
+**/IDynamoDBKeys.java

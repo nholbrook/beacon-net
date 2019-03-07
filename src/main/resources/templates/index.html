@@ -9,7 +9,6 @@
 	<title>Beacon Net</title>
 	<!-- Icons-->
 	<link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<!-- Main styles for this application-->
 	<link href="css/dist/style.css" rel="stylesheet">
 	<link href="css/dist/vendors/pace-progress/pace.min.css" rel="stylesheet">
@@ -18,11 +17,18 @@
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 	<header class="app-header navbar">
 		<a class="navbar-brand" href="#">
+			<!-- Logo img
+        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
+      -->
 			<h4 class="logo mb-0">BEACON NET</h4>
+
+			<img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
 		</a>
+
 		<ul class="nav navbar-nav ml-auto">
 			<li class="nav-item d-md-down-none">
-				<a class="nav-link" href="#"></a>
+				<a class="nav-link" href="#">
+				</a>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -32,18 +38,53 @@
 					<div class="dropdown-header text-center">
 						<strong>Account</strong>
 					</div>
-					<a class="dropdown-item" href="#"><i class="nav-icon icon-logout"></i>Logout</a>
+					<!-- <a class="dropdown-item" href="#">
+              <i class="fa fa-bell-o"></i> Updates
+              <span class="badge badge-info">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-envelope-o"></i> Messages
+              <span class="badge badge-success">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-tasks"></i> Tasks
+              <span class="badge badge-danger">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-comments"></i> Comments
+              <span class="badge badge-warning">42</span>
+            </a>
+            <div class="dropdown-header text-center">
+              <strong>Settings</strong>
+            </div>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-user"></i> Profile</a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-wrench"></i> Settings</a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-usd"></i> Payments
+              <span class="badge badge-secondary">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-file"></i> Projects
+              <span class="badge badge-primary">42</span>
+            </a> -->
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">
+                        <i class="nav-icon icon-logout"></i> Logout</a>
 				</div>
 			</li>
 		</ul>
-	</header>
 
+	</header>
 	<div class="app-body">
 		<div class="sidebar">
 			<nav class="sidebar-nav">
 				<ul class="nav">
 					<li class="nav-item">
-						<a class="nav-link" href="index.html"><i class="nav-icon icon-speedometer"></i>Dashboard</a>
+						<a class="nav-link" href="index.html">
+							<i class="nav-icon icon-speedometer"></i> Dashboard
+						</a>
 					</li>
 					<li class="nav-title">Map Management</li>
 					<li class="nav-item">
@@ -53,9 +94,16 @@
 						<a class="nav-link" href="#"><i class="nav-icon icon-map"></i>Map 2</a>
 					</li>
 					<li class="nav-title">Beacon Management</li>
-					<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon icon-location-pin"></i>Place and rename beacons</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon icon-chart"></i>View beacon connection status</a></li>
-					<li class="nav-item"><a class="nav-link" href="raw.html"><i class="nav-icon icon-folder"></i>Raw Data</a></li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="nav-icon icon-location-pin"></i>Place and rename beacons</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="nav-icon icon-chart"></i>View beacon connection status</a>
+					</li>
+                    <li class="nav-item"><a class="nav-link" href="raw"><i class="nav-icon icon-folder"></i>Raw Data</a></li>
+                </ul>
+				</li>
+				</li>
 				</ul>
 			</nav>
 			<button class="sidebar-minimizer brand-minimizer" type="button"></button>
@@ -64,18 +112,18 @@
 			<!-- Breadcrumb-->
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">Home</li>
-				<li class="breadcrumb-item"><a href="#">Admin</a></li>
+				<li class="breadcrumb-item">
+					<a href="#">Admin</a>
+				</li>
 				<li class="breadcrumb-item active">Dashboard</li>
 				<!-- Breadcrumb Menu-->
 				<li class="breadcrumb-menu d-md-down-none">
 					<div class="btn-group" role="group" aria-label="Button group">
-
-						<!-- Trigger/open filter modal -->
-						<div class="btn btn-filter" data-toggle="modal" data-target="#filterModal"><i class="nav-icon icon-options"></i> Filter</div>
 				</li>
 			</ol>
 			<div class="container-fluid">
 				<div class="animated fadeIn">
+
 					<div class="card">
 						<div class="card-body">
 							<div class="row">
@@ -87,15 +135,13 @@
 									<div class="small text-muted" id="filterdisplay1"></div>
 									<div class="small text-muted" id="filterdisplay2"></div>
 								</div>
+								<!-- /.col-->
 								<div class="col-sm-7 d-none d-md-block">
-									<!-- Trigger/open add map modal -->
-									<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal" type="button">
-										<img class="icon-cloud-add" src="icons/add.png" title="Add map" alt="Add Map">
-									</button>
+
 									<!-- Trigger/open filter modal -->
-									<button class="btn btn-primary float-right" type="button">
-										<img class="icon-cloud-download" src="icons/cloud-download.png" data-toggle="modal" data-target="#filterModal">
-									</button>
+									<div class="btn btn-primary float-right" data-toggle="modal" data-target="#filterModal">
+										<!-- /Trigger/open filter modal -->
+										<img class="filter-btn" src="icons/cloud-download.png" title="Filter map" alt="Filter map"></div>
 									<div class="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
 										<label class="btn btn-outline-secondary">
 											<input id="option1" type="radio" name="options" autocomplete="off"> Day
@@ -108,10 +154,12 @@
 										</label>
 									</div>
 								</div>
+								<!-- /.col-->
 							</div>
+							<!-- /.row-->
 							<div class="chart-wrapper" style="height:300px;margin-top:40px;">
-								<img class="center-block" src="https://s3.amazonaws.com/beacon-net/aiport-terminal.jpg">
-								<!-- <canvas class="chart" id="main-chart"></canvas> -->
+
+
 							</div>
 						</div>
 						<div class="card-footer">
@@ -441,6 +489,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- /Filter Modal -->
 		<!-- Add Map Modal -->
 		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -461,6 +510,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- /Add Map Modal -->
 		<!-- CoreUI and necessary plugins-->
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<script src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -472,9 +522,7 @@
 		<!-- Plugins and scripts required by this view-->
 		<script src="node_modules/chart.js/dist/Chart.min.js"></script>
 		<script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
-		<script src="js/dist/main.min.js"></script>
-		<script src="js/dist/filter.min.js"></script>
-	</div>
+		<script src="js/dist/main.js"></script>
 </body>
 
 </html>

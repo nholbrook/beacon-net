@@ -17,6 +17,7 @@ public class HomeController {
 	}
 	*/
 
+
 	//If authenticated
 	@RequestMapping(method = RequestMethod.GET)
 	public String getHome() {

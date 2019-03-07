@@ -21,29 +21,21 @@ import com.amazonaws.services.dynamodbv2.model.GetItemResult;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class BeaconNetApplication {
+public class BeaconNetApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(BeaconNetApplication.class);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(BeaconNetApplication.class, args);
-	}
-
-	@Bean
-	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-		return args -> {
-
-			final AmazonDynamoDB ddb = AmazonDynamoDBClientBuilder.standard()
-					.withRegion(Regions.US_EAST_1)
-					.build();
-
-			DynamoDB dynamoDB = new DynamoDB(ddb);
-
-			Table table = dynamoDB.getTable("beacon-net");
-
-		};
 	}
 
 }
