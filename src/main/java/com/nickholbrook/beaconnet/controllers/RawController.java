@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/raw")
-public class RawController extends EntryControllerBase {
+public class RawController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getRaw(Model model) {
