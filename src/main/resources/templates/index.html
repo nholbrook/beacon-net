@@ -1,378 +1,299 @@
 <!DOCTYPE html>
-<!--
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<base href="./">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Beacon Net</title>
+	<!-- Icons-->
+	<link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<!-- Main styles for this application-->
+	<link href="css/dist/style.css" rel="stylesheet">
+	<link href="css/dist/vendors/pace-progress/pace.min.css" rel="stylesheet">
+</head>
 
-<html lang="en">
-  <head>
-    <base href="./">
-    <meta charset="utf-8">
-      * CoreUI - Free Bootstrap Admin Template
-      * @version v2.1.11
-      * @link https://coreui.io
-      * Copyright (c) 2018 creativeLabs Łukasz Holeczek
-      * Licensed under MIT (https://coreui.io/license)
-      --><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Beacon Net</title>
-    <base href="/">
-    <!-- Icons-->
-    <link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
-    <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
-    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics-->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+	<header class="app-header navbar">
+		<a class="navbar-brand" href="#">
+			<h4 class="logo mb-0">BEACON NET</h4>
+		</a>
+		<ul class="nav navbar-nav ml-auto">
+			<li class="nav-item d-md-down-none">
+				<a class="nav-link" href="#"></a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<img class="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com">
+				</a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<div class="dropdown-header text-center">
+						<strong>Account</strong>
+					</div>
+					<a class="dropdown-item" href="#"><i class="nav-icon icon-logout"></i>Logout</a>
+				</div>
+			</li>
+		</ul>
+	</header>
 
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      // Shared ID
-      gtag('config', 'UA-118965717-3');
-      // Bootstrap ID
-      gtag('config', 'UA-118965717-5');
-    </script>
-  </head>
-  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-    <header class="app-header navbar">
-      <a class="navbar-brand" href="#">
-        <!-- Logo img
-        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-      -->
-      <h4 class="logo mb-0">BEACON NET</h4>
+	<div class="app-body">
+		<div class="sidebar">
+			<nav class="sidebar-nav">
+				<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html"><i class="nav-icon icon-speedometer"></i>Dashboard</a>
+					</li>
+					<li class="nav-title">Map Management</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="nav-icon icon-map"></i>2nd Level Concourse</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="nav-icon icon-map"></i>Map 2</a>
+					</li>
+					<li class="nav-title">Beacon Management</li>
+					<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon icon-location-pin"></i>Place and rename beacons</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon icon-chart"></i>View beacon connection status</a></li>
+					<li class="nav-item"><a class="nav-link" href="raw.html"><i class="nav-icon icon-folder"></i>Raw Data</a></li>
+				</ul>
+			</nav>
+			<button class="sidebar-minimizer brand-minimizer" type="button"></button>
+		</div>
+		<main class="main">
+			<!-- Breadcrumb-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">Home</li>
+				<li class="breadcrumb-item"><a href="#">Admin</a></li>
+				<li class="breadcrumb-item active">Dashboard</li>
+				<!-- Breadcrumb Menu-->
+				<li class="breadcrumb-menu d-md-down-none">
+					<div class="btn-group" role="group" aria-label="Button group">
 
-        <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
-      </a>
-
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item d-md-down-none">
-          <a class="nav-link" href="#">
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <img class="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com">
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-header text-center">
-              <strong>Account</strong>
-            </div>
-            <!-- <a class="dropdown-item" href="#">
-              <i class="fa fa-bell-o"></i> Updates
-              <span class="badge badge-info">42</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-envelope-o"></i> Messages
-              <span class="badge badge-success">42</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-tasks"></i> Tasks
-              <span class="badge badge-danger">42</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-comments"></i> Comments
-              <span class="badge badge-warning">42</span>
-            </a>
-            <div class="dropdown-header text-center">
-              <strong>Settings</strong>
-            </div>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-user"></i> Profile</a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-wrench"></i> Settings</a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-usd"></i> Payments
-              <span class="badge badge-secondary">42</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-file"></i> Projects
-              <span class="badge badge-primary">42</span>
-            </a> -->
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-lock"></i><span class="cui-account-logout" aria-hidden="true"></span> Logout</a>
-          </div>
-        </li>
-      </ul>
-
-    </header>
-    <div class="app-body">
-      <div class="sidebar">
-        <nav class="sidebar-nav">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="nav-icon icon-speedometer"></i> Dashboard
-              </a>
-            </li>
-            <li class="nav-title">View Map</li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> Map</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> Map 2</a>
-            </li>
-            <a class="nav-link" href="beaconmgmt.html"><li class="nav-title">Beacon Management</li></a>
-              </ul>
-            </li>
-            </li>
-          </ul>
-        </nav>
-        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-      </div>
-      <main class="main">
-        <!-- Breadcrumb-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">Home</li>
-          <li class="breadcrumb-item">
-            <a href="#">Admin</a>
-          </li>
-          <li class="breadcrumb-item active">Dashboard</li>
-          <!-- Breadcrumb Menu-->
-          <li class="breadcrumb-menu d-md-down-none">
-            <div class="btn-group" role="group" aria-label="Button group">
-          </li>
-        </ol>
-        <div class="container-fluid">
-          <div class="animated fadeIn">
-
-            <div class="card">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-5">
-                    <h4 class="card-title mb-0">Traffic</h4>
-                    <div class="small text-muted"><span class="cui-calendar" aria-hidden="true"></span> Date</div>
-                    <div class="small text-muted"><span class="cui-map" aria-hidden="true"></span> Map: Map name</div>
-                    <div class="small text-muted" id="filterdisplaytitle"><strong>Filter:</strong> None</div>
-                  </div>
-                  <!-- /.col-->
-                  <div class="col-sm-7 d-none d-md-block">
-
-                    <!-- Trigger/open filter modal -->
-                    <div class="btn btn-primary float-right" data-toggle="modal" data-target="#filterModal">
-                    <!-- /Trigger/open filter modal -->
-                      <span class="cui-chevron-bottom" aria-hidden="true"></span> Filter
-                    </div>
-                    <div class="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
-                      <label class="btn btn-outline-secondary">
-                        <input id="option1" type="radio" name="options" autocomplete="off"> Day
-                      </label>
-                      <label class="btn btn-outline-secondary active">
-                        <input id="option2" type="radio" name="options" autocomplete="off" checked=""> Month
-                      </label>
-                      <label class="btn btn-outline-secondary">
-                        <input id="option3" type="radio" name="options" autocomplete="off"> Year
-                      </label>
-                    </div>
-                  </div>
-                  <!-- /.col-->
-                </div>
-                <!-- /.row-->
-                <div class="chart-wrapper" style="height:300px;margin-top:40px;">
-
-
-                </div>
-              </div>
-              <div class="card-footer">
-                <div class="row text-center">
-                  <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                    <div class="text-muted">Congested</div>
-                    <strong>80,000 (80%)</strong>
+						<!-- Trigger/open filter modal -->
+						<div class="btn btn-filter" data-toggle="modal" data-target="#filterModal"><i class="nav-icon icon-options"></i> Filter</div>
+				</li>
+			</ol>
+			<div class="container-fluid">
+				<div class="animated fadeIn">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-5">
+									<h4 class="card-title mb-0">Traffic</h4>
+									<div class="small text-muted">November 2018</div>
+									<div class="small text-muted">Map: Second level concourse</div>
+									<div class="small text-muted" id="filterdisplaytitle">Filter:</div>
+									<div class="small text-muted" id="filterdisplay1"></div>
+									<div class="small text-muted" id="filterdisplay2"></div>
+								</div>
+								<div class="col-sm-7 d-none d-md-block">
+									<!-- Trigger/open add map modal -->
+									<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal" type="button">
+										<img class="icon-cloud-add" src="icons/add.png" title="Add map" alt="Add Map">
+									</button>
+									<!-- Trigger/open filter modal -->
+									<button class="btn btn-primary float-right" type="button">
+										<img class="icon-cloud-download" src="icons/cloud-download.png" data-toggle="modal" data-target="#filterModal">
+									</button>
+									<div class="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
+										<label class="btn btn-outline-secondary">
+											<input id="option1" type="radio" name="options" autocomplete="off"> Day
+										</label>
+										<label class="btn btn-outline-secondary active">
+											<input id="option2" type="radio" name="options" autocomplete="off" checked=""> Month
+										</label>
+										<label class="btn btn-outline-secondary">
+											<input id="option3" type="radio" name="options" autocomplete="off"> Year
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="chart-wrapper" style="height:300px;margin-top:40px;">
+								<img class="center-block" src="https://s3.amazonaws.com/beacon-net/aiport-terminal.jpg">
+								<!-- <canvas class="chart" id="main-chart"></canvas> -->
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="row text-center">
+								<div class="col-sm-12 col-md mb-sm-2 mb-0">
+									<div class="text-muted">New Visitors</div>
+									<strong>123,000 (40%)</strong>
+									<div class="progress progress-xs mt-2">
+										<div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md mb-sm-2 mb-0">
+									<div class="text-muted">Returning Visitors</div>
+									<strong>85,000 (20%)</strong>
+									<div class="progress progress-xs mt-2">
+										<div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md mb-sm-2 mb-0">
+									<div class="text-muted">Average Traffic Flow</div>
+									<div class="progress progress-xs mt-2">
+										<div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<!-- <div class="col-sm-12 col-md mb-sm-2 mb-0">
+                    <div class="text-muted">Average Time Spent</div>
+                    <strong>6.5 hours</strong>
                     <div class="progress progress-xs mt-2">
-                      <div class="progress-bar bg-congested" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-avgtime" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                  </div>
-                  <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                    <div class="text-muted">Very Heavy</div>
-                    <strong>70,000 (70%)</strong>
+                  </div> -->
+								<!-- <div class="col-sm-12 col-md mb-sm-2 mb-0">
+                    <div class="text-muted">Stat 5</div>
+                    <strong>40.15%</strong>
                     <div class="progress progress-xs mt-2">
-                      <div class="progress-bar bg-heavy" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                  </div>
-                  <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                    <div class="text-muted">Heavy</div>
-                    <strong>60,000 (60%)</strong>
-                    <div class="progress progress-xs mt-2">
-                      <div class="progress-bar bg-avg-heavy" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                    <div class="text-muted">Average</div>
-                    <strong>15,000 (15%)</strong>
-                    <div class="progress progress-xs mt-2">
-                      <div class="progress-bar bg-avg" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                    <div class="text-muted">Light</div>
-                    <strong>10,000 (10%)</strong>
-                    <div class="progress progress-xs mt-2">
-                      <div class="progress-bar bg-li" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                    <div class="text-muted">Very Light</div>
-                    <strong>5,000 (5%)</strong>
-                    <div class="progress progress-xs mt-2">
-                      <div class="progress-bar bg-vlight" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                    <div class="text-muted">Empty</div>
-                    <strong>500 (0.5%)</strong>
-                    <div class="progress progress-xs mt-2">
-                      <div class="progress-bar bg-empty" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /.card-->
-           <!-- <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">Visitor Stats</div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <div class="callout callout-info">
-                              <small class="text-muted">New Visitors</small>
-                              <br>
-                              <strong class="h4">9,123</strong>
-                              <div class="chart-wrapper">
-                                <canvas id="sparkline-chart-1" width="100" height="30"></canvas>
-                              </div>
-                            </div>
-                          </div>
-                         <div class="col-sm-6">
-                            <div class="callout callout-danger">
-                              <small class="text-muted">Returning Visitors</small>
-                              <br>
-                              <strong class="h4">22,643</strong>
-                              <div class="chart-wrapper">
-                                <canvas id="sparkline-chart-2" width="100" height="30"></canvas>
-                              </div>
-                            </div>
-                          </div>
-                        
-                        </div>
-                        
-                         <hr class="mt-0">
-                        <div class="progress-group mb-4">
-                          <div class="progress-group-prepend">
-                            <span class="progress-group-text">Monday</span>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-nv" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="progress-group mb-4">
-                          <div class="progress-group-prepend">
-                            <span class="progress-group-text">Tuesday</span>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-nv" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="progress-group mb-4">
-                          <div class="progress-group-prepend">
-                            <span class="progress-group-text">Wednesday</span>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bbg-nv" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="progress-group mb-4">
-                          <div class="progress-group-prepend">
-                            <span class="progress-group-text">Thursday</span>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-nv" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 91%" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="progress-group mb-4">
-                          <div class="progress-group-prepend">
-                            <span class="progress-group-text">Friday</span>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-nv" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 73%" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="progress-group mb-4">
-                          <div class="progress-group-prepend">
-                            <span class="progress-group-text">Saturday</span>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-nv" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="progress-group mb-4">
-                          <div class="progress-group-prepend">
-                            <span class="progress-group-text">Sunday</span>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-nv" role="progressbar" style="width: 9%" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-danger" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    
-                      <div class="col-sm-6">
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <div class="callout callout-warning">
-                              <small class="text-muted">Average Time Spent</small>
-                              <br>
-                              <strong class="h4">4 hours</strong>
-                              <div class="chart-wrapper">
-                                <canvas id="sparkline-chart-3" width="100" height="30"></canvas>
-                              </div>
-                            </div>
-                          </div> -->
-                      
-                         <!-- <div class="col-sm-6">
+                  </div> -->
+							</div>
+						</div>
+					</div>
+					<!-- /.card-->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">Visitor Stats</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="callout callout-info">
+														<small class="text-muted">New Visitors</small>
+														<br>
+														<strong class="h4">9,123</strong>
+														<div class="chart-wrapper">
+															<canvas id="sparkline-chart-1" width="100" height="30"></canvas>
+														</div>
+													</div>
+												</div>
+												<!-- /.col-->
+												<div class="col-sm-6">
+													<div class="callout callout-danger">
+														<small class="text-muted">Returning Visitors</small>
+														<br>
+														<strong class="h4">22,643</strong>
+														<div class="chart-wrapper">
+															<canvas id="sparkline-chart-2" width="100" height="30"></canvas>
+														</div>
+													</div>
+												</div>
+												<!-- /.col-->
+											</div>
+											<!-- /.row-->
+											<hr class="mt-0">
+											<div class="progress-group mb-4">
+												<div class="progress-group-prepend">
+													<span class="progress-group-text">Monday</span>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-nv" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<div class="progress-group mb-4">
+												<div class="progress-group-prepend">
+													<span class="progress-group-text">Tuesday</span>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-nv" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-danger" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<div class="progress-group mb-4">
+												<div class="progress-group-prepend">
+													<span class="progress-group-text">Wednesday</span>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bbg-nv" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<div class="progress-group mb-4">
+												<div class="progress-group-prepend">
+													<span class="progress-group-text">Thursday</span>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-nv" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-danger" role="progressbar" style="width: 91%" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<div class="progress-group mb-4">
+												<div class="progress-group-prepend">
+													<span class="progress-group-text">Friday</span>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-nv" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-danger" role="progressbar" style="width: 73%" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<div class="progress-group mb-4">
+												<div class="progress-group-prepend">
+													<span class="progress-group-text">Saturday</span>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-nv" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<div class="progress-group mb-4">
+												<div class="progress-group-prepend">
+													<span class="progress-group-text">Sunday</span>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-nv" role="progressbar" style="width: 9%" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-danger" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /.col-->
+										<div class="col-sm-6">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="callout callout-warning">
+														<small class="text-muted">Average Time Spent</small>
+														<br>
+														<strong class="h4">4 hours</strong>
+														<div class="chart-wrapper">
+															<canvas id="sparkline-chart-3" width="100" height="30"></canvas>
+														</div>
+													</div>
+												</div>
+												<!-- /.col-->
+												<!-- <div class="col-sm-6">
                             <div class="callout callout-success">
                               <small class="text-muted">Stat 4</small>
                               <br>
@@ -381,36 +302,36 @@
                                 <canvas id="sparkline-chart-4" width="100" height="30"></canvas>
                               </div>
                             </div>
-                          </div>
-                      
-                        </div>
-                   
-                        <hr class="mt-0">
-                        <div class="progress-group">
-                          <div class="progress-group-header">
-                            <i class="icon-user progress-group-icon"></i>
-                            <div>New Visitors</div>
-                            <div class="ml-auto font-weight-bold">5 hours</div>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="progress-group mb-5">
-                          <div class="progress-group-header">
-                            <i class="icon-user-female progress-group-icon"></i>
-                            <div>Returning Visitors</div>
-                            <div class="ml-auto font-weight-bold">3 hours</div>
-                          </div>
-                          <div class="progress-group-bars">
-                            <div class="progress progress-xs">
-                              <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                      <div class="progress-group">
+                          </div> -->
+												<!-- /.col-->
+											</div>
+											<!-- /.row-->
+											<hr class="mt-0">
+											<div class="progress-group">
+												<div class="progress-group-header">
+													<i class="icon-user progress-group-icon"></i>
+													<div>New Visitors</div>
+													<div class="ml-auto font-weight-bold">5 hours</div>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<div class="progress-group mb-5">
+												<div class="progress-group-header">
+													<i class="icon-user-female progress-group-icon"></i>
+													<div>Returning Visitors</div>
+													<div class="ml-auto font-weight-bold">3 hours</div>
+												</div>
+												<div class="progress-group-bars">
+													<div class="progress progress-xs">
+														<div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+												</div>
+											</div>
+											<!-- <div class="progress-group">
                           <div class="progress-group-header align-items-end">
                             <i class="icon-globe progress-group-icon"></i>
                             <div>Lorem ipsum</div>
@@ -459,71 +380,99 @@
                           <div class="progress-group-bars">
                             <div class="progress progress-xs">
                               <div class="progress-bar bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                   
-                    </div>
-                 
-          </div>
-        </div> --> 
-      </main>
-      <!-- Filter Modal -->
-      <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filtereModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="filtereModalLabel">Filter map locations</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <!-- Left column -->
-                <div class="col-md-6">
-                  <form>
-                    <p><label><input class="filtercheckbox" type="checkbox" value="Beacon A" name="locationA">Beacon A</label></p>
-                    <p><label><input class="filtercheckbox" type="checkbox" value="Beacon B" name="locationA">Beacon B</label></p>
-                    <p><label><input class="filtercheckbox" type="checkbox" value="Beacon C" name="locationA">Beacon C</label></p>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="filterbtnapply"><span class="cui-check" aria-hidden="true"></span> Apply filter</button>
-              <button type="button" class="btn btn-secondary" id="filterbtnclear">Clear filter</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="cui-ban" aria-hidden="true"></span> Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /Filter Modal -->
-
-    </div>
-    <footer class="app-footer">
-      <div>
-        <a href="https://coreui.io">CoreUI</a>
-        <span>&copy; 2018 creativeLabs.</span>
-      </div>
-      <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="https://coreui.io">CoreUI</a>
-      </div>
-    </footer>
-    <!-- CoreUI and necessary plugins-->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/pace-progress/pace.min.js"></script>
-    <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-    <script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
-    <!-- Plugins and scripts required by this view-->
-    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-    <script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/filter.js"></script>
-  </body>
-</html>
+                            </div> -->
+										</div>
+									</div>
+								</div>
+								<!-- /.col-->
+							</div>
+							<!-- /.row-->
+						</div>
+					</div>
+		</main>
+		<!-- Filter Modal -->
+		<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filtereModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="filtereModalLabel">Filter map locations</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<!-- Left column -->
+							<div class="col-md-6">
+								<p>Point A</p>
+								<form>
+									<p><label><input type="checkbox" value="Ticket counter" name="locationA"> Ticket counter</label></p>
+									<p><label><input type="checkbox" value="Security" name="locationA"> Security</label></p>
+									<p><label><input type="checkbox" value="Gate A" name="locationA"> Gate A</label></p>
+									<p><label><input type="checkbox" value="Gate B" name="locationA"> Gate B</label></p>
+									<p><label><input type="checkbox" value="Gate C" name="locationA"> Gate C</label></p>
+									<p><label><input type="checkbox" value="Baggage claim" name="locationA"> Baggage claim</label></p>
+								</form>
+							</div>
+							<div class="col-md-6">
+								<p>Point B</p>
+								<form>
+									<p><label><input type="checkbox" value="Ticket counter" name="locationB"> Ticket counter</label></p>
+									<p><label><input type="checkbox" value="Security" name="locationB"> Security</label></p>
+									<p><label><input type="checkbox" value="Gate A" name="locationB"> Gate A</label></p>
+									<p><label><input type="checkbox" value="Gate B" name="locationB"> Gate B</label></p>
+									<p><label><input type="checkbox" value="Gate C" name="locationB"> Gate C</label></p>
+									<p><label><input type="checkbox" value="Baggage claim" name="locationB"> Baggage claim</label></p>
+								</form>
+							</div>
+							<form id="filter-date-form">
+								From
+								<input type="date" name="filter-from">
+								To
+								<input type="date" name="filter-to">
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="filterbtnapply">Apply filter</button>
+						<button type="button" class="btn btn-secondary" id="filterbtnclear">Clear filter</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Add Map Modal -->
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="addModalLabel">Upload Map</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Apply filter</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- CoreUI and necessary plugins-->
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="node_modules/pace-progress/pace.min.js"></script>
+		<script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+		<script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
+		<!-- Plugins and scripts required by this view-->
+		<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+		<script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
+		<script src="js/dist/main.min.js"></script>
+		<script src="js/dist/filter.min.js"></script>
+	</div>
+</body>
