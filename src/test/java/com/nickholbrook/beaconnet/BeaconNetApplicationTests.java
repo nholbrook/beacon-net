@@ -11,6 +11,7 @@ public class BeaconNetApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

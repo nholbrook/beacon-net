@@ -28,9 +28,7 @@ function style() {
     gulp
       .src(paths.styles.src)
       .pipe(sass())
-      .on("error", sass.logError)
       .pipe(autoprefixer())
-      .pipe(gulp.dest(paths.styles.dest))
       .pipe(csso())
       .pipe(rename({extname: '.min.css'}))
       .pipe(gulp.dest(paths.styles.dest))
@@ -41,7 +39,6 @@ function script() {
     return (
         gulp
             .src(paths.scripts.src)
-            .pipe(gulp.dest(paths.scripts.dest))
             .pipe(uglify())
             .pipe(rename({extname: '.min.js'}))
             .pipe(gulp.dest(paths.scripts.dest))
@@ -67,7 +64,7 @@ function serve(){
   watch();
   browserSync.init({
       server: {
-        baseDir: ['src/main/resources/templates', 'src/main/resources/static']
+        baseDir: ['src/main/resources/templates', 'src/main/resources/static']//, 'node_modules']
       }
   });
 }

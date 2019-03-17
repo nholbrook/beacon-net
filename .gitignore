@@ -27,3 +27,9 @@
 ## Node / NPM ##
 **/node
 **/node_modules
+
+**/application.properties
+**/IDynamoDBKeys.java
+**/Application.yml
+**/DynamoDBAuthService.java
+src/main/java/com/nickholbrook/beaconnet/service/DynamoDBAuthService.java
