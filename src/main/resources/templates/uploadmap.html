@@ -16,7 +16,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Place and Rename Beacons</title>
+    <title>Upload a Map</title>
     <base href="/">
     <!-- Icons-->
     <link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
@@ -65,7 +65,7 @@
             </div>
 
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="login.html">
+            <a class="dropdown-item" href="#">
               <i class="fa fa-lock"></i><span class="cui-account-logout" aria-hidden="true"></span> Logout</a>
           </div>
         </li>
@@ -95,7 +95,7 @@
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Place and Rename Beacons</li>
+          <li class="breadcrumb-item active">Upload a Map</li>
 
           <!-- Breadcrumb Menu-->
           <li class="breadcrumb-menu d-md-down-none">
@@ -107,18 +107,27 @@
 
             <div class="card">
               <div class="card-body">
-                    <h4 class="card-title mb-0">Place and Rename Beacons</h4>
-                    <br>
-                    <div class="container">
-                      <div class="row">
-                        <div class="col">
-                          Uploaded maps
-                        </div>
-                        <div class="col">
-                          Beacons
-                        </div>
-                      </div>
-                    </div>
+                <h4 class="card-title mb-0">Upload a Map</h4>
+                <br>
+              <!-- Map Upload -->
+              <input type="file" name="file" id="file">
+
+              <label for "mapuploadname">Enter a name for the map</label>
+              <input type="text" name="mapuploadname" id="map-upload-name">
+
+              <button id="add-map-btn" class="btn btn-primary btn-sm">Add</button>
+              <!-- /Map Upload -->
+
+              <!-- Current uploaded maps -->
+              <br>
+              <br>
+              <br>
+              <h4 class="card-title mb-0">Uploaded Maps</h4>
+              <br>
+              <p>Map name 1</p>
+              <p>Map name 2</p>
+              <p>Map name 3</p>
+              <!-- /Current uploaded maps -->
               </div>
             </div>
       </main>

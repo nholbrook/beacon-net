@@ -70,7 +70,7 @@
               <span class="badge badge-primary">42</span>
             </a> -->
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="login.html">
               <i class="fa fa-lock"></i><span class="cui-account-logout" aria-hidden="true"></span> Logout</a>
           </div>
         </li>
@@ -88,17 +88,20 @@
                   </li>
                   <li class="nav-title">Map Management</li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="nav-icon icon-map"></i>2nd Level Concourse</a>
+                      <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span>2nd Level Concourse</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="nav-icon icon-map"></i>Map 2</a>
+                      <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span>Map 2</a>
                   </li>
                   <li class="nav-title">Beacon Management</li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="nav-icon icon-location-pin"></i>Place and rename beacons</a>
+                    <a class="nav-link" href="place-beacon"></span><span class="cui-location-pin" aria-hidden="true"></span> Place and rename beacons</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="nav-icon icon-chart"></i>View beacon connection status</a>
+                    <a class="nav-link" href="beacon-connection"></span><span class="cui-rss" aria-hidden="true"></span> View beacon connection status</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="upload-map"><span class="cui-cloud-upload" aria-hidden="true"></span>Upload a map</a>
                   </li>
                   <li class="nav-title">Other</li>
                   <li class="nav-item">
@@ -112,9 +115,6 @@
         <!-- Breadcrumb-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">Home</li>
-          <li class="breadcrumb-item">
-            <a href="#">Admin</a>
-          </li>
           <li class="breadcrumb-item active">Dashboard</li>
           <!-- Breadcrumb Menu-->
           <li class="breadcrumb-menu d-md-down-none">
@@ -244,9 +244,9 @@
                               </div>
                             </div>
                           </div>
-                        
+
                         </div>
-                        
+
                          <hr class="mt-0">
                         <div class="progress-group mb-4">
                           <div class="progress-group-prepend">
@@ -340,7 +340,7 @@
                           </div>
                         </div>
                       </div>
-                    
+
                       <div class="col-sm-6">
                         <div class="row">
                           <div class="col-sm-6">
@@ -353,7 +353,7 @@
                               </div>
                             </div>
                           </div> -->
-                      
+
                          <!-- <div class="col-sm-6">
                             <div class="callout callout-success">
                               <small class="text-muted">Stat 4</small>
@@ -364,9 +364,9 @@
                               </div>
                             </div>
                           </div>
-                      
+
                         </div>
-                   
+
                         <hr class="mt-0">
                         <div class="progress-group">
                           <div class="progress-group-header">
@@ -445,11 +445,11 @@
                           </div>
                         </div>
                       </div>
-                   
+
                     </div>
-                 
+
           </div>
-        </div> --> 
+        </div> -->
       </main>
       <!-- Filter Modal -->
       <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filtereModalLabel" aria-hidden="true">
@@ -495,7 +495,7 @@
     <!-- Plugins and scripts required by this view-->
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/filter.js"></script>
+    <script src="js/src/main.js"></script>
+    <script src="js/src/filter.js"></script>
   </body>
 </html>
