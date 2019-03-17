@@ -16,7 +16,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Place and Rename Beacons</title>
+    <title>Beacon Connection Status</title>
     <base href="/">
     <!-- Icons-->
     <link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
@@ -95,7 +95,7 @@
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Place and Rename Beacons</li>
+          <li class="breadcrumb-item active">Beacon Connection Status</li>
 
           <!-- Breadcrumb Menu-->
           <li class="breadcrumb-menu d-md-down-none">
@@ -107,18 +107,37 @@
 
             <div class="card">
               <div class="card-body">
-                    <h4 class="card-title mb-0">Place and Rename Beacons</h4>
-                    <br>
-                    <div class="container">
-                      <div class="row">
-                        <div class="col">
-                          Uploaded maps
-                        </div>
-                        <div class="col">
-                          Beacons
-                        </div>
-                      </div>
-                    </div>
+                <h4 class="card-title mb-0">Beacon Connection Status</h4>
+                <br>
+                <!-- Table -->
+
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Beacon Name</th>
+                      <th scope="col">Connection Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Beacon 1</td>
+                      <td>Connected</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Beacon 2</td>
+                      <td>Connected</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Beacon 3</td>
+                      <td>Disconnected</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- /Table -->
               </div>
             </div>
       </main>
