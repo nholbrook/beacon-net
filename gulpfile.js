@@ -64,7 +64,7 @@ function serve(){
   watch();
   browserSync.init({
       server: {
-        baseDir: ['src/main/resources/templates', 'src/main/resources/static']
+        baseDir: ['src/main/resources/templates', 'src/main/resources/static']//, 'node_modules']
       }
   });
 }
