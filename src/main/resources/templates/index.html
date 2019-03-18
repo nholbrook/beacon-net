@@ -12,63 +12,61 @@
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
-    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
-  </head>
-  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-    <header class="app-header navbar">
-      <a class="navbar-brand" href="#">
-        <!-- Logo img
-        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-      -->
-      <h4 class="logo mb-0">BEACON NET</h4>
+    <link href="css/dist/vendors/pace-progress/pace.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+    </head>
+    <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+      <header class="app-header navbar">
+        <a class="navbar-brand" href="#">
+        <h4 class="logo mb-0">BEACON NET</h4>
 
-        <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
-      </a>
+          <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+        </a>
 
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item d-md-down-none">
-          <a class="nav-link" href="#">
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <img class="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com">
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-header text-center">
-              <strong>Account</strong>
-            </div>
-            <!-- <a class="dropdown-item" href="#">
-              <i class="fa fa-bell-o"></i> Updates
-              <span class="badge badge-info">42</span>
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item d-md-down-none">
+            <a class="nav-link" href="#">
             </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-envelope-o"></i> Messages
-              <span class="badge badge-success">42</span>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <img class="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com">
             </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-tasks"></i> Tasks
-              <span class="badge badge-danger">42</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-comments"></i> Comments
-              <span class="badge badge-warning">42</span>
-            </a>
-            <div class="dropdown-header text-center">
-              <strong>Settings</strong>
-            </div>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-user"></i> Profile</a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-wrench"></i> Settings</a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-usd"></i> Payments
-              <span class="badge badge-secondary">42</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa fa-file"></i> Projects
-              <span class="badge badge-primary">42</span>
-            </a> -->
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-header text-center">
+                <strong>Account</strong>
+              </div>
+              <!-- <a class="dropdown-item" href="#">
+                <i class="fa fa-bell-o"></i> Updates
+                <span class="badge badge-info">42</span>
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-envelope-o"></i> Messages
+                <span class="badge badge-success">42</span>
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-tasks"></i> Tasks
+                <span class="badge badge-danger">42</span>
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-comments"></i> Comments
+                <span class="badge badge-warning">42</span>
+              </a>
+              <div class="dropdown-header text-center">
+                <strong>Settings</strong>
+              </div>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-user"></i> Profile</a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-wrench"></i> Settings</a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-usd"></i> Payments
+                <span class="badge badge-secondary">42</span>
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-file"></i> Projects
+                <span class="badge badge-primary">42</span>
+              </a> -->
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="login.html">
               <i class="fa fa-lock"></i><span class="cui-account-logout" aria-hidden="true"></span> Logout</a>
@@ -156,9 +154,8 @@
                   <!-- /.col-->
                 </div>
                 <!-- /.row-->
-                <div class="chart-wrapper" style="height:300px;margin-top:40px;">
-
-
+                <div class="chart-wrapper">
+                    <div id="photo" style="height: 500px; width: 100%"></div>
                 </div>
               </div>
               <div class="card-footer">
@@ -495,7 +492,17 @@
     <!-- Plugins and scripts required by this view-->
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
-    <script src="js/src/main.js"></script>
-    <script src="js/src/filter.js"></script>
+    <script src="js/dist/main.min.js"></script>
+    <script src="js/dist/filter.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+    <script type="text/javascript" src="js/dist/L.TileLayer.Zoomify.min.js"></script>
+    <script type="text/javascript">
+        var map = L.map('photo').setView(new L.LatLng(0,0), 0);
+        L.tileLayer.zoomify('https://s3.amazonaws.com/beacon-net/bsb1/', {
+            width: 5472,
+            height: 3648,
+            tolerance: 0.8
+        }).addTo(map);
+    </script>
   </body>
 </html>
