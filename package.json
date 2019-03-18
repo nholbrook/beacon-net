@@ -17,6 +17,7 @@
     "font-awesome": "4.7.0",
     "heatmap.js": "^2.0.5",
     "jquery": "3.3.1",
+    "leaflet-heatmap": "^1.0.0",
     "pace-progress": "1.0.2",
     "perfect-scrollbar": "^1.4.0",
     "popper.js": "^1.14.6",
