@@ -1,21 +1,10 @@
 <!DOCTYPE html>
-<!--
-
-
 <html lang="en">
   <head>
     <base href="./">
     <meta charset="utf-8">
-      * CoreUI - Free Bootstrap Admin Template
-      * @version v2.1.11
-      * @link https://coreui.io
-      * Copyright (c) 2018 creativeLabs Łukasz Holeczek
-      * Licensed under MIT (https://coreui.io/license)
-      --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>Beacon and Map Management</title>
     <base href="/">
     <!-- Icons-->
@@ -24,27 +13,10 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
     <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics-->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      // Shared ID
-      gtag('config', 'UA-118965717-3');
-      // Bootstrap ID
-      gtag('config', 'UA-118965717-5');
-    </script>
   </head>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     <header class="app-header navbar">
       <a class="navbar-brand" href="#">
-        <!-- Logo img
-        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-      -->
       <h4 class="logo mb-0">BEACON NET</h4>
 
         <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
@@ -104,25 +76,36 @@
     </header>
     <div class="app-body">
       <div class="sidebar">
-        <nav class="sidebar-nav">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="nav-icon icon-speedometer"></i> Dashboard
-              </a>
-            </li>
-            <li class="nav-title">Beacon and Map Management</li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"></span> Link 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"> Link 2</a>
-            </li>
+          <nav class="sidebar-nav">
+              <ul class="nav">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/">
+                          <i class="nav-icon icon-speedometer"></i> Dashboard
+                      </a>
+                  </li>
+                  <li class="nav-title">Map Management</li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> 2nd Level Concourse</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> Map 2</a>
+                  </li>
+                  <li class="nav-title">Beacon Management</li>
+                  <li class="nav-item">
+                      <a class="nav-link active" href="place-beacon"></span><span class="cui-location-pin" aria-hidden="true"></span> Place and rename beacons</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="beacon-connection"></span><span class="cui-rss" aria-hidden="true"></span> View beacon connection status</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="upload-map"><span class="cui-cloud-upload" aria-hidden="true"></span> Upload a map</a>
+                  </li>
+                  <li class="nav-title">Other</li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/raw"><i class="nav-icon icon-graph"></i> View Raw Data</a>
+                  </li>
               </ul>
-            </li>
-            </li>
-          </ul>
-        </nav>
+          </nav>
         <button class="sidebar-minimizer brand-minimizer" type="button"></button>
       </div>
       <main class="main">
@@ -166,16 +149,6 @@
       </main>
 
     </div>
-    <footer class="app-footer">
-      <div>
-        <a href="https://coreui.io">CoreUI</a>
-        <span>&copy; 2018 creativeLabs.</span>
-      </div>
-      <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="https://coreui.io">CoreUI</a>
-      </div>
-    </footer>
     <!-- CoreUI and necessary plugins-->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
