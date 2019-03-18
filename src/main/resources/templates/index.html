@@ -544,3 +544,49 @@
     </script>
   </body>
 </html>
+
+/*
+var rawData = [[${entryList}]];
+console.log(rawData);
+var max = 0;
+
+var map = L.map('photo').setView(new L.LatLng(0,0), 0);
+L.tileLayer.zoomify('https://s3.amazonaws.com/beacon-net/bsb1/', {
+width: 3180,
+height: 2064,
+tolerance: 0.8
+}).addTo(map);
+
+var points = [];
+
+for (int i = 0; i < rawData.length; i++) {
+if (rawData[i].val > max) max = rawData[i].val;
+var point = {
+x: rawData[i].x,
+y: rawData[i].y,
+val: rawData[i].val
+};
+points.push(point);
+}
+
+console.log(points);
+
+var data = {
+max: max,
+data: points
+};
+
+var cfg = {
+"radius": 2,
+"maxOpacity": .8,
+"scaleRadius": true,
+"useLocalExtrema": true,
+latField: 'x',
+lngField: 'y',
+valueField: 'val'
+};
+
+var heatmapLayer = new HeatmapOverlay(cfg);
+heatmapLayer.setData(data);
+heatmapLayer.addTo(map);
+*/

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
   <head>
     <base href="./">
     <meta charset="utf-8">
@@ -104,27 +104,21 @@
                 <table class="table">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Beacon Name</th>
-                      <th scope="col">Connection Status</th>
+                        <th scope="col">Beacon Name</th>
+                        <th scope="col">Last Time</th>
+                        <th scope="col">Beacon ID</th>
+                        <th scope="col">X</th>
+                        <th scope="col">Y</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Beacon 1</td>
-                      <td>Connected</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Beacon 2</td>
-                      <td>Connected</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Beacon 3</td>
-                      <td>Disconnected</td>
-                    </tr>
+                  <tr th:each="beacon: ${beaconList}">
+                      <td th:text="${beacon.name}"></td>
+                      <td th:text="${beacon.lastTime}"></td>
+                      <td th:text="${beacon.beaconId}"></td>
+                      <td th:text="${beacon.x}"></td>
+                      <td th:text="${beacon.y}"></td>
+                  </tr>
                   </tbody>
                 </table>
                 <!-- /Table -->

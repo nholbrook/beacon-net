@@ -25,6 +25,9 @@ public class Entry {
 	private String accountId;
 	@Pattern(regexp = Util.UUID_PATTERN, message = "TokenFormatError")
 	private String beaconId;
+	private String x;
+	private String y;
+	private String val;
 
 	@DynamoDBHashKey(attributeName = "entryId")
 	public String getEntryId() { return entryId; }
@@ -54,6 +57,18 @@ public class Entry {
 	@DynamoDBAttribute(attributeName="beaconId")
 	public String getBeaconId() { return beaconId; }
 	public void setBeaconId(String beaconId) { this.beaconId = trimString( beaconId ); }
+
+	@DynamoDBAttribute(attributeName="x")
+	public String getX() { return x; }
+	public void setX(String x) { this.x = trimString( x ); }
+
+	@DynamoDBAttribute(attributeName="y")
+	public String getY() { return y; }
+	public void setY(String y) { this.y = trimString( y ); }
+
+	@DynamoDBAttribute(attributeName="val")
+	public String getVal() { return val; }
+	public void setVal(String val) { this.val = trimString( val ); }
 
 	@DynamoDBIgnore
 	private String trimString(String input) {
