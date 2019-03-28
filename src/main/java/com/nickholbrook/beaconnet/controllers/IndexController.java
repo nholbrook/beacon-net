@@ -2,8 +2,7 @@ package com.nickholbrook.beaconnet.controllers;
 
 import java.util.List;
 
-import com.nickholbrook.beaconnet.model.Beacon;
-import com.nickholbrook.beaconnet.model.Entry;
+import com.nickholbrook.beaconnet.model.Summary;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/")
-public class IndexController extends EntryControllerBase {
+public class IndexController extends SummaryControllerBase {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getIndex(Model model) {
-		List<Entry> entryList = getEntryTableService().getEntries();
-		if (entryList != null && entryList.size() > 0) {
-			model.addAttribute(ENTRY_LIST, entryList);
+		List<Summary> summaryList = getSummaryTableService().getSummaries();
+		if (summaryList != null && summaryList.size() > 0) {
+			model.addAttribute(SUMMARY_LIST, summaryList);
 		}
-		System.out.println(model);
 		return "index";
 	}
 

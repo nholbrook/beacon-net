@@ -32,7 +32,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @SpringBootApplication
-@ComponentScan
 public class BeaconNetApplication extends SpringBootServletInitializer {
 
 	@Override

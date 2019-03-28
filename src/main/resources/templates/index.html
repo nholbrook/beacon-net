@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
   <head>
     <base href="./">
     <meta charset="utf-8">
@@ -162,49 +162,49 @@
                 <div class="row text-center">
                   <div class="col-sm-12 col-md mb-sm-2 mb-0">
                     <div class="text-muted">Congested</div>
-                    <strong>80,000 (80%)</strong>
+                    <strong>80%</strong>
                     <div class="progress progress-xs mt-2">
                       <div class="progress-bar bg-congested" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md mb-sm-2 mb-0">
                     <div class="text-muted">Very Heavy</div>
-                    <strong>70,000 (70%)</strong>
+                    <strong>70%</strong>
                     <div class="progress progress-xs mt-2">
                       <div class="progress-bar bg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md mb-sm-2 mb-0">
                     <div class="text-muted">Heavy</div>
-                    <strong>60,000 (60%)</strong>
+                    <strong>60%</strong>
                     <div class="progress progress-xs mt-2">
                       <div class="progress-bar bg-avg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md mb-sm-2 mb-0">
                     <div class="text-muted">Average</div>
-                    <strong>15,000 (15%)</strong>
+                    <strong>15%</strong>
                     <div class="progress progress-xs mt-2">
                       <div class="progress-bar bg-avg" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md mb-sm-2 mb-0">
                     <div class="text-muted">Light</div>
-                    <strong>10,000 (10%)</strong>
+                    <strong>10%</strong>
                     <div class="progress progress-xs mt-2">
                       <div class="progress-bar bg-li" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md mb-sm-2 mb-0">
                     <div class="text-muted">Very Light</div>
-                    <strong>5,000 (5%)</strong>
+                    <strong>5%</strong>
                     <div class="progress progress-xs mt-2">
                       <div class="progress-bar bg-vlight" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md mb-sm-2 mb-0">
                     <div class="text-muted">Empty</div>
-                    <strong>500 (0.5%)</strong>
+                    <strong>0.5%</strong>
                     <div class="progress progress-xs mt-2">
                       <div class="progress-bar bg-empty" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -498,8 +498,11 @@
       <script src="/js/dist/heatmap.min.js"></script>
       <script src="/js/dist/leaflet-heatmap.min.js"></script>
       <script type="text/javascript" src="js/dist/L.TileLayer.Zoomify.min.js"></script>
-      <script type="text/javascript">
-        var map = L.map('photo').setView(new L.LatLng(0,0), 0);
+      <!--<script type="text/javascript" th:inline="javascript">
+        var rawData = [[${summaryList}]];
+        console.log(rawData);
+
+        var map = L.map('photo').setView(new L.LatLng(1590,1032), 0);
         L.tileLayer.zoomify('https://s3.amazonaws.com/beacon-net/bsb1/', {
             width: 3180,
             height: 2064,
@@ -541,11 +544,63 @@
         var heatmapLayer = new HeatmapOverlay(cfg);
         heatmapLayer.setData(data);
         heatmapLayer.addTo(map);
+    </script>-->
+      <script type="text/javascript" th:inline="javascript">
+        var json = [[${summaryList}]];
+        console.log(json);
+
+        var points = [];
+        var max = 0;
+
+        for(var i = 0; i < json.length; i++) {
+            var obj = json[i];
+            max = Math.max(max, obj.count);
+            var point = {
+                x: parseInt(obj.y, 10) * -1,
+                y: parseInt(obj.x, 10),
+                value: parseInt(obj.count, 10)
+            };
+            points.push(point);
+        }
+
+        var data = {
+          max: max,
+          data: points
+        };
+
+        console.log(data);
+
+        var baseLayer = L.tileLayer.zoomify('https://s3.amazonaws.com/beacon-net/bsb1/', {
+            width: 3180,
+            height: 2064,
+            tolerance: 0.8
+        });
+
+        var cfg = {
+            radius: 10,
+            maxOpacity: .8,
+            scaleRadius: true,
+            useLocalExtrema: true,
+            latField: 'x',
+            lngField: 'y',
+            valueField: 'value'
+        };
+
+        var heatmapLayer = new HeatmapOverlay(cfg);
+
+        var map = new L.Map('photo', {
+          crs: L.CRS.Simple,
+          center: [1590, 1032],
+          zoom: 4,
+          layers: [baseLayer, heatmapLayer]
+        });
+
+        heatmapLayer.setData(data);
     </script>
   </body>
 </html>
 
-/*
+<!--
 var rawData = [[${entryList}]];
 console.log(rawData);
 var max = 0;
@@ -589,4 +644,4 @@ valueField: 'val'
 var heatmapLayer = new HeatmapOverlay(cfg);
 heatmapLayer.setData(data);
 heatmapLayer.addTo(map);
-*/
+-->

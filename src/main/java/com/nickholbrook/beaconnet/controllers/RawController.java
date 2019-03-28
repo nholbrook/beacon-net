@@ -21,7 +21,6 @@ public class RawController extends EntryControllerBase{
 		if (entryList != null && entryList.size() > 0) {
 			model.addAttribute(ENTRY_LIST, entryList);
 		}
-		System.out.println(model);
 		return "raw";
 	}
 
