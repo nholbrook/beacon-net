@@ -29,4 +29,5 @@
 **/node_modules
 
 **/application.properties
+**/awscredentials.properties
 **/IDynamoDBKeys.java
