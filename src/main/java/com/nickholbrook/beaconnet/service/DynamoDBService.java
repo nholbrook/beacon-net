@@ -19,7 +19,7 @@ public class DynamoDBService extends DynamoDBAuthService {
 
 	protected AWSCredentials getCredentials() {
 		if (credentials == null) {
-			credentials = new BasicAWSCredentials( accessKey, secretKey );
+			credentials = new BasicAWSCredentials( ACCESS_KEY, SECRET_KEY );
 		}
 		return credentials;
 	}
@@ -31,7 +31,7 @@ public class DynamoDBService extends DynamoDBAuthService {
 			config.setProtocol(Protocol.HTTP);
 			mClient = AmazonDynamoDBClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
 					.withClientConfiguration(config)
-					.withRegion( region )
+					.withRegion( REGION )
 					.build();
 		}
 		return mClient;
