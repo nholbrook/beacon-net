@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/beacon-connection")
-public class BeaconConnectionController extends BeaconControllerBase{
+public class BeaconConnectionController extends BeaconControllerBase {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getBeaconConnection(Model model) {

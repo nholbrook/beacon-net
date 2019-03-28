@@ -34,10 +34,6 @@ public abstract class DynamoDBAuthService {
 	private static String fetchValue(Map<String, String> config, String name) {
 		String val = config.get(name);
 
-		if("DS_TARGET_ACCOUNT_ID".equals(name) && "FALSE".equals(val)) {
-			return null;
-		}
-
 		return ((val != null) ? val : "");
 	}
 
