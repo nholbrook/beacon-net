@@ -1,7 +1,5 @@
 package com.nickholbrook.beaconnet.config;
 
-import com.nickholbrook.beaconnet.service.DynamoDBAuthService;
-
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableAutoConfiguration
-public class MvcConfig implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 
 	String workingDirectory = System.getProperty("user.dir");
 
