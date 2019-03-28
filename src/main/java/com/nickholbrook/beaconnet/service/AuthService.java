@@ -1,11 +1,17 @@
 package com.nickholbrook.beaconnet.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
-import com.amazonaws.services.cognitoidp.model.AdminCreateUserRequest;
+import com.amazonaws.services.cognitoidp.model.AdminGetUserRequest;
+import com.amazonaws.services.cognitoidp.model.AdminGetUserResult;
 import com.amazonaws.services.cognitoidp.model.AttributeType;
-import com.amazonaws.services.cognitoidp.model.UserType;
+import com.nickholbrook.beaconnet.model.UserResponse;
+import com.nickholbrook.beaconnet.util.LoadFromProperties;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +22,28 @@ public class AuthService {
 			userPoolId = us-east-1_3vocxnITQ
 			endpoint = cognito-idp.us-east-1.amazonaws.com
 			region = us-east-1
-	identityPoolId = us-east-1:f2810be3-a906-4a1e-83bc-aa1230b6789
+	identityPoolId = us-east-1:f2810be3-a906-4a1e-83bc-aa1230b6789*/
+
+	final static Regions REGION;
+	final static String ENDPOINT;
+	final static String USER_POOL_ID;
+	final static String CLIENT_ID;
+	final static String IDENTITY_POOL_ID;
+
+	static {
+		Map<String, String> config = LoadFromProperties.loadFromProperties();
+
+		ENDPOINT = LoadFromProperties.fetchValue(config, "aws.cognito.endpoint");
+		USER_POOL_ID = LoadFromProperties.fetchValue(config, "aws.cognito.userPoolId");
+		CLIENT_ID = LoadFromProperties.fetchValue(config, "aws.cognito.clientId");
+		IDENTITY_POOL_ID = LoadFromProperties.fetchValue(config, "aws.cognito.identityPoolId");
+		REGION = Regions.valueOf(LoadFromProperties.fetchValue(config, "aws.region"));
+
+	}
+
+	AuthService() {
+		System.out.println(getUserInfo("sboucher").toString());
+	}
 
 	public AWSCognitoIdentityProvider getAmazonCognitoIdentityClient() {
 		ClasspathPropertiesFileCredentialsProvider propertiesFileCredentialsProvider =
@@ -24,47 +51,40 @@ public class AuthService {
 
 		return AWSCognitoIdentityProviderClientBuilder.standard()
 				.withCredentials(propertiesFileCredentialsProvider)
-				.withRegion(cognitoConfig.getRegion())
+				.withRegion( REGION )
 				.build();
 
 	}
 
-	public UserType signUp(UserSignUpRequest signUpRequest){
+	public UserResponse getUserInfo(String username) {
 
 		AWSCognitoIdentityProvider cognitoClient = getAmazonCognitoIdentityClient();
-		AdminCreateUserRequest cognitoRequest = new AdminCreateUserRequest()
-				.withUserPoolId(cognitoConfig.getUserPoolId())
-				.withUsername(signUpRequest.getUsername())
-		withUserAttributes(
-				new AttributeType()
-						.withValue(signUpRequest.getEmail()),
-				new AttributeType()
-						.withName("name")
-						.withValue(signUpRequest.getName()),
-				new AttributeType()
-						.withName("family_name")
-						.withValue(signUpRequest.getLastname()),
-				new AttributeType()
-						.withName("phone_number")
-						.withValue(signUpRequest.getPhoneNumber()),
-				new AttributeType()
-						.withName("custom:companyName")
-						.withValue(signUpRequest.getCompanyName()),
-				new AttributeType()
-						.withName("custom:companyPosition")
-						.withValue(signUpRequest.getCompanyPosition()),
-				new AttributeType()
-						.withName("email_verified")
-						.withValue("true"))
-				.withTemporaryPassword("TEMPORARY_PASSWORD")))
-              .withMessageAction("SUPPRESS")
-				.withDesiredDeliveryMediums(DeliveryMediumType.EMAIL)
-				.withForceAliasCreation(Boolean.FALSE);
+		AdminGetUserRequest userRequest = new AdminGetUserRequest()
+				.withUsername(username)
+				.withUserPoolId( USER_POOL_ID );
 
-		AdminCreateUserResult createUserResult =  cognitoClient.adminCreateUser(cognitoRequest);
-		UserType cognitoUser =  createUserResult.getUser();
 
-		return cognitoUser;
+		AdminGetUserResult userResult = cognitoClient.adminGetUser(userRequest);
 
-	}*/
+		UserResponse userResponse = new UserResponse();
+		userResponse.setUsername(userResult.getUsername());
+		userResponse.setUserStatus(userResult.getUserStatus());
+		userResponse.setUserCreateDate(userResult.getUserCreateDate());
+		userResponse.setLastModifiedDate(userResult.getUserLastModifiedDate());
+
+		List<AttributeType> userAttributes = userResult.getUserAttributes();
+		for(AttributeType attribute: userAttributes) {
+			if(attribute.getName().equals("custom:companyName")) {
+				userResponse.setCompanyName(attribute.getValue());
+			}else if(attribute.getName().equals("custom:companyPosition")) {
+				userResponse.setCompanyPosition(attribute.getValue());
+			}else if(attribute.getName().equals("email")) {
+				userResponse.setEmail(attribute.getValue());
+			}
+		}
+
+		cognitoClient.shutdown();
+		return userResponse;
+
+	}
 }
