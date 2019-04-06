@@ -83,6 +83,7 @@
           <li class="breadcrumb-item">Home</li>
           <!-- Breadcrumb Menu-->
           <li class="breadcrumb-menu d-md-down-none">
+              <a class="breadcrumb-item" href="/uploadmap"><i class="nav-icon icon-graph"></i><b>Map Management</b></a>
               <a class="breadcrumb-item" href="/raw"><i class="nav-icon icon-graph"></i><b>Raw Data</b></a>
             <div class="btn-group" role="group" aria-label="Button group">
           </li>
@@ -107,7 +108,10 @@
                     </div>
                       <div class="btn btn-primary float-right" href="upload-map">
                         <!-- /Upload map/ -->
-                          <span class="cui-cloud-upload" aria-hidden="true"></span> Upload Map
+                          <span class="cui-cloud-upload" aria-hidden="true"></span>
+                          <input type="file" name="file" id="file" class="map-upload-input">
+                          <label for="file">Upload Map</label>
+
                       </div>
                   </div>
                   <!-- /.col-->
@@ -168,41 +172,38 @@
               <div class="container-fluid">
                   <div class="animated fadeIn">
 
-                      <div class="card">
-                          <div class="card-body">
-                              <h4 class="card-title mb-0">Beacon Connection Status</h4>
-                                  <a class="nav-link" href="place-beacon"></span><span class="cui-location-pin" aria-hidden="true"></span> Place and rename beacons</a>
-                              <!-- Table -->
+                    <div class="container-fluid">
+                      <div class="animated fadeIn">
 
-                              <table class="table">
-                                  <thead class="thead-light">
-                                  <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">Beacon Name</th>
-                                      <th scope="col">Connection Status</th>
-                                  </tr>
-                                  </thead>
-                                  <tbody>
-                                  <tr>
-                                      <th scope="row">1</th>
-                                      <td>Beacon 1</td>
-                                      <td>Connected</td>
-                                  </tr>
-                                  <tr>
-                                      <th scope="row">2</th>
-                                      <td>Beacon 2</td>
-                                      <td>Connected</td>
-                                  </tr>
-                                  <tr>
-                                      <th scope="row">3</th>
-                                      <td>Beacon 3</td>
-                                      <td>Disconnected</td>
-                                  </tr>
-                                  </tbody>
-                              </table>
-                              <!-- /Table -->
+                        <div class="card">
+                          <div class="card-body">
+                            <h4 class="card-title mb-0">Beacon Connection Status</h4>
+                            <br>
+                            <!-- Table -->
+
+                            <table class="table">
+                              <thead class="thead-light">
+                              <tr>
+                                <th scope="col">Beacon Name</th>
+                                <th scope="col">Last Time</th>
+                                <th scope="col">Beacon ID</th>
+                                <th scope="col">X</th>
+                                <th scope="col">Y</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr th:each="beacon: ${beaconList}">
+                                <td th:text="${beacon.name}"></td>
+                                <td th:text="${beacon.lastTime}"></td>
+                                <td th:text="${beacon.beaconId}"></td>
+                                <td th:text="${beacon.x}"></td>
+                                <td th:text="${beacon.y}"></td>
+                              </tr>
+                              </tbody>
+                            </table>
+                            <!-- /Table -->
                           </div>
-                      </div>
+                        </div>
       </main>
 
     </div>
