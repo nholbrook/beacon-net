@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Beacon Net</title>
+    <title>Beacon Net: Raw Data</title>
     <base href="/">
     <!-- Icons-->
     <link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
     <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
 </head>
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<body class="app header-fixed sidebar-fixed">
 <header class="app-header navbar">
     <a class="navbar-brand" href="#">
-        <h4 class="logo mb-0">BEACON NET</h4>
+        <h4 class="logo mb-0"><img src="icons/beaconnet.png" width=150% height=150%></h4>
 
         <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
     </a>
@@ -44,46 +44,14 @@
 
 </header>
 <div class="app-body">
-    <div class="sidebar">
-        <nav class="sidebar-nav">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">
-                        <i class="nav-icon icon-speedometer"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-title">Map Management</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="nav-icon icon-map"></i>2nd Level Concourse</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="nav-icon icon-map"></i>Map 2</a>
-                </li>
-                <li class="nav-title">Beacon Management</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="nav-icon icon-location-pin"></i>Place and rename beacons</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="nav-icon icon-chart"></i>View beacon connection status</a>
-                </li>
-                <li class="nav-title">Other</li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/raw"><i class="nav-icon icon-graph"></i>View Raw Data</a>
-                </li>
-            </ul>
-        </nav>
-        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-    </div>
     <main class="main">
         <!-- Breadcrumb-->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item">
-                <a href="#">Admin</a>
-            </li>
-            <li class="breadcrumb-item active">Raw Data</li>
+            <a class="breadcrumb-item" href="/index"><b>Home</b></a>
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu d-md-down-none">
+                <a class="breadcrumb-item" href="/uploadmap"><i class="nav-icon icon-graph"></i><b>Map Management</b></a>
+                <li class="breadcrumb-item"><i class="nav-icon icon-graph"></i>Raw Data</li>
                 <div class="btn-group" role="group" aria-label="Button group">
             </li>
         </ol>

@@ -111,7 +111,6 @@
                           <span class="cui-cloud-upload" aria-hidden="true"></span>
                           <input type="file" name="file" id="file" class="map-upload-input">
                           <label for="file">Upload Map</label>
-
                       </div>
                   </div>
                   <!-- /.col-->
@@ -177,7 +176,7 @@
 
                         <div class="card">
                           <div class="card-body">
-                            <h4 class="card-title mb-0">Beacon Connection Status</h4>
+                            <h4 class="card-title mb-0">Beacon Status</h4>
                             <br>
                             <!-- Table -->
 
@@ -189,15 +188,19 @@
                                 <th scope="col">Beacon ID</th>
                                 <th scope="col">X</th>
                                 <th scope="col">Y</th>
+                                  <th scope="col">Place Beacon</th>
+                                  <th scope="col">Rename Beacon</th>
                               </tr>
                               </thead>
-                              <tbody>
-                              <tr th:each="beacon: ${beaconList}">
+                              <td>
+                              <td th:each="beacon: ${beaconList}">
                                 <td th:text="${beacon.name}"></td>
                                 <td th:text="${beacon.lastTime}"></td>
                                 <td th:text="${beacon.beaconId}"></td>
                                 <td th:text="${beacon.x}"></td>
                                 <td th:text="${beacon.y}"></td>
+                                <td th:text="Place Beacon"</td>
+                                <td th:text="Rename Beacon"</td>
                               </tr>
                               </tbody>
                             </table>
