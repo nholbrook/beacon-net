@@ -50,7 +50,6 @@
 			<artifactId>spring-security-oauth2-client</artifactId>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
