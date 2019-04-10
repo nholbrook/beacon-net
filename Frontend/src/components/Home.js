@@ -14,171 +14,160 @@ export default class Home extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              /*{this.props.isAuthenticated
-                ? <NavItem onClick={this.props.handleLogout}>Logout</NavItem>
-                : <Fragment>
-                    <LinkContainer to="/signup">
-                      <NavItem>Signup</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/login">
-                      <NavItem>Login</NavItem>
-                    </LinkContainer>
-                  </Fragment>
-              }*/
-              <header class="app-header navbar">
-                <a class="navbar-brand" href="#">
-                <h4 class="logo mb-0">BEACON NET</h4>
+              <header className="app-header navbar">
+                <a className="navbar-brand" href="#">
+                <h4 className="logo mb-0">BEACON NET</h4>
 
-                  <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo"></img>
+                  <img className="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo"></img>
                 </a>
 
-                <ul class="nav navbar-nav ml-auto">
-                  <li class="nav-item d-md-down-none">
-                    <a class="nav-link" href="#">
+                <ul className="nav navbar-nav ml-auto">
+                  <li className="nav-item d-md-down-none">
+                    <a className="nav-link" href="#">
                     </a>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                      <img class="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com"></img>
+                  <li className="nav-item dropdown">
+                    <a className="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      <img className="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com"></img>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <div class="dropdown-header text-center">
+                    <div className="dropdown-menu dropdown-menu-right">
+                      <div className="dropdown-header text-center">
                         <strong>Account</strong>
                       </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="login.html">
-                      <i class="fa fa-lock"></i><span class="cui-account-logout" aria-hidden="true"></span> Logout
+                    <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" href="login.html">
+                      <i className="fa fa-lock"></i><span className="cui-account-logout" aria-hidden="true"></span> Logout
                     </a>
                   </div>
                 </li>
               </ul>
 
             </header>
-            <div class="app-body">
-              <div class="sidebar">
-                  <nav class="sidebar-nav">
-                      <ul class="nav">
-                          <li class="nav-item">
-                              <a class="nav-link active" href="/">
-                                  <i class="nav-icon icon-speedometer"></i> Dashboard
+            <div className="app-body">
+              <div className="sidebar">
+                  <nav className="sidebar-nav">
+                      <ul className="nav">
+                          <li className="nav-item">
+                              <a className="nav-link active" href="/">
+                                  <i className="nav-icon icon-speedometer"></i> Dashboard
                               </a>
                           </li>
-                          <li class="nav-title">Map Management</li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> 2nd Level Concourse</a>
+                          <li className="nav-title">Map Management</li>
+                          <li className="nav-item">
+                              <a className="nav-link" href="#"><span className="cui-map" aria-hidden="true"></span> 2nd Level Concourse</a>
                           </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> Map 2</a>
+                          <li className="nav-item">
+                              <a className="nav-link" href="#"><span className="cui-map" aria-hidden="true"></span> Map 2</a>
                           </li>
-                          <li class="nav-title">Beacon Management</li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="place-beacon"><span class="cui-location-pin" aria-hidden="true"></span> Place and rename beacons</a>
+                          <li className="nav-title">Beacon Management</li>
+                          <li className="nav-item">
+                            <a className="nav-link" href="place-beacon"><span className="cui-location-pin" aria-hidden="true"></span> Place and rename beacons</a>
                           </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="beacon-connection"><span class="cui-rss" aria-hidden="true"></span> View beacon connection status</a>
+                          <li className="nav-item">
+                            <a className="nav-link" href="beacon-connection"><span className="cui-rss" aria-hidden="true"></span> View beacon connection status</a>
                           </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="upload-map"><span class="cui-cloud-upload" aria-hidden="true"></span> Upload a map</a>
+                          <li className="nav-item">
+                            <a className="nav-link" href="upload-map"><span className="cui-cloud-upload" aria-hidden="true"></span> Upload a map</a>
                           </li>
-                          <li class="nav-title">Other</li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="/raw"><i class="nav-icon icon-graph"></i> View Raw Data</a>
+                          <li className="nav-title">Other</li>
+                          <li className="nav-item">
+                              <a className="nav-link" href="/raw"><i className="nav-icon icon-graph"></i> View Raw Data</a>
                           </li>
                       </ul>
                   </nav>
-                <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+                <button className="sidebar-minimizer brand-minimizer" type="button"></button>
               </div>
-              <main class="main">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">Home</li>
-                  <li class="breadcrumb-item active">Dashboard</li>
-                  <li class="breadcrumb-menu d-md-down-none">
-                    <div class="btn-group" role="group" aria-label="Button group"></div>
+              <main className="main">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">Home</li>
+                  <li className="breadcrumb-item active">Dashboard</li>
+                  <li className="breadcrumb-menu d-md-down-none">
+                    <div className="btn-group" role="group" aria-label="Button group"></div>
                   </li>
                 </ol>
-                <div class="container-fluid">
-                  <div class="animated fadeIn">
+                <div className="container-fluid">
+                  <div className="animated fadeIn">
 
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-sm-5">
-                            <h4 class="card-title mb-0">Traffic</h4>
-                            <div class="small text-muted"><span class="cui-calendar" aria-hidden="true"></span> Date</div>
-                            <div class="small text-muted"><span class="cui-map" aria-hidden="true"></span> Map: Map name</div>
-                            <div class="small text-muted" id="filterdisplaytitle"><strong>Filter:</strong> None</div>
+                    <div className="card">
+                      <div className="card-body">
+                        <div className="row">
+                          <div className="col-sm-5">
+                            <h4 className="card-title mb-0">Traffic</h4>
+                            <div className="small text-muted"><span className="cui-calendar" aria-hidden="true"></span> Date</div>
+                            <div className="small text-muted"><span className="cui-map" aria-hidden="true"></span> Map: Map name</div>
+                            <div className="small text-muted" id="filterdisplaytitle"><strong>Filter:</strong> None</div>
                           </div>
-                          <div class="col-sm-7 d-none d-md-block">
+                          <div className="col-sm-7 d-none d-md-block">
 
-                            <div class="btn btn-primary float-right" data-toggle="modal" data-target="#filterModal">
-                              <span class="cui-chevron-bottom" aria-hidden="true"></span> Filter
+                            <div className="btn btn-primary float-right" data-toggle="modal" data-target="#filterModal">
+                              <span className="cui-chevron-bottom" aria-hidden="true"></span> Filter
                             </div>
-                            <div class="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
-                              <label class="btn btn-outline-secondary">
-                                <input id="option1" type="radio" name="options" autocomplete="off"> Day</input>
+                            <div className="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
+                              <label className="btn btn-outline-secondary">
+                                <input id="option1" type="radio" name="options" autoComplete="off"> Day</input>
                               </label>
-                              <label class="btn btn-outline-secondary active">
-                                <input id="option2" type="radio" name="options" autocomplete="off" checked=""> Month</input>
+                              <label className="btn btn-outline-secondary active">
+                                <input id="option2" type="radio" name="options" autoComplete="off" defaultChecked> Month</input>
                               </label>
-                              <label class="btn btn-outline-secondary">
-                                <input id="option3" type="radio" name="options" autocomplete="off"> Year</input>
+                              <label className="btn btn-outline-secondary">
+                                <input id="option3" type="radio" name="options" autoComplete="off"> Year</input>
                               </label>
                             </div>
                           </div>
                         </div>
-                        <div class="chart-wrapper">
+                        <div className="chart-wrapper">
                             <div id="photo" style="height: 500px; width: 100%"></div>
                         </div>
                       </div>
-                      <div class="card-footer">
-                        <div class="row text-center">
-                          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div class="text-muted">Congested</div>
+                      <div className="card-footer">
+                        <div className="row text-center">
+                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div className="text-muted">Congested</div>
                             <strong>80%</strong>
-                            <div class="progress progress-xs mt-2">
-                              <div class="progress-bar bg-congested" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress progress-xs mt-2">
+                              <div className="progress-bar bg-congested" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
-                          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div class="text-muted">Very Heavy</div>
+                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div className="text-muted">Very Heavy</div>
                             <strong>70%</strong>
-                            <div class="progress progress-xs mt-2">
-                              <div class="progress-bar bg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress progress-xs mt-2">
+                              <div className="progress-bar bg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
-                          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div class="text-muted">Heavy</div>
+                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div className="text-muted">Heavy</div>
                             <strong>60%</strong>
-                            <div class="progress progress-xs mt-2">
-                              <div class="progress-bar bg-avg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress progress-xs mt-2">
+                              <div className="progress-bar bg-avg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
-                          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div class="text-muted">Average</div>
+                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div className="text-muted">Average</div>
                             <strong>15%</strong>
-                            <div class="progress progress-xs mt-2">
-                              <div class="progress-bar bg-avg" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress progress-xs mt-2">
+                              <div className="progress-bar bg-avg" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
-                          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div class="text-muted">Light</div>
+                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div className="text-muted">Light</div>
                             <strong>10%</strong>
-                            <div class="progress progress-xs mt-2">
-                              <div class="progress-bar bg-li" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress progress-xs mt-2">
+                              <div className="progress-bar bg-li" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
-                          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div class="text-muted">Very Light</div>
+                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div className="text-muted">Very Light</div>
                             <strong>5%</strong>
-                            <div class="progress progress-xs mt-2">
-                              <div class="progress-bar bg-vlight" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress progress-xs mt-2">
+                              <div className="progress-bar bg-vlight" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
-                          <div class="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div class="text-muted">Empty</div>
+                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div className="text-muted">Empty</div>
                             <strong>0.5%</strong>
-                            <div class="progress progress-xs mt-2">
-                              <div class="progress-bar bg-empty" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress progress-xs mt-2">
+                              <div className="progress-bar bg-empty" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
                         </div>
@@ -187,30 +176,30 @@ export default class Home extends Component {
                   </div>
                 </div>
               </main>
-              <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filtereModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="filtereModalLabel">Filter map locations</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <div className="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filtereModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="filtereModalLabel">Filter map locations</h5>
+                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body">
-                      <div class="row">
-                        <div class="col-md-6">
+                    <div className="modal-body">
+                      <div className="row">
+                        <div className="col-md-6">
                           <form>
-                            <p><label><input class="filtercheckbox" type="checkbox" value="Beacon A" name="locationA">Beacon A</input></label></p>
-                            <p><label><input class="filtercheckbox" type="checkbox" value="Beacon B" name="locationA">Beacon B</input></label></p>
-                            <p><label><input class="filtercheckbox" type="checkbox" value="Beacon C" name="locationA">Beacon C</input></label></p>
+                            <p><label><input className="filtercheckbox" type="checkbox" value="Beacon A" name="locationA">Beacon A</input></label></p>
+                            <p><label><input className="filtercheckbox" type="checkbox" value="Beacon B" name="locationA">Beacon B</input></label></p>
+                            <p><label><input className="filtercheckbox" type="checkbox" value="Beacon C" name="locationA">Beacon C</input></label></p>
                           </form>
                         </div>
                       </div>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" id="filterbtnapply"><span class="cui-check" aria-hidden="true"></span> Apply filter</button>
-                      <button type="button" class="btn btn-secondary" id="filterbtnclear">Clear filter</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="cui-ban" aria-hidden="true"></span> Close</button>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-primary" id="filterbtnapply"><span className="cui-check" aria-hidden="true"></span> Apply filter</button>
+                      <button type="button" className="btn btn-secondary" id="filterbtnclear">Clear filter</button>
+                      <button type="button" className="btn btn-secondary" data-dismiss="modal"><span className="cui-ban" aria-hidden="true"></span> Close</button>
                     </div>
                   </div>
                 </div>
