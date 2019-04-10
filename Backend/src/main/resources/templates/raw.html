@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Beacon Net</title>
+    <base href="/">
+    <!-- Icons-->
+    <link rel="stylesheet" type="text/css" href="node_modules/simple-line-icons/css/simple-line-icons.css">
+    <!-- Main styles for this application-->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
+    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<header class="app-header navbar">
+    <a class="navbar-brand" href="#">
+        <h4 class="logo mb-0">BEACON NET</h4>
+
+        <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+    </a>
+
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item d-md-down-none">
+            <a class="nav-link" href="#">
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <img class="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-header text-center">
+                    <strong>Account</strong>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                    <i class="fa fa-lock"></i><span class="cui-account-logout" aria-hidden="true"></span> Logout</a>
+            </div>
+        </li>
+    </ul>
+
+</header>
+<div class="app-body">
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="nav-icon icon-speedometer"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-title">Map Management</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> 2nd Level Concourse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="cui-map" aria-hidden="true"></span> Map 2</a>
+                </li>
+                <li class="nav-title">Beacon Management</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="place-beacon"></span><span class="cui-location-pin" aria-hidden="true"></span> Place and rename beacons</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="beacon-connection"></span><span class="cui-rss" aria-hidden="true"></span> View beacon connection status</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="upload-map"><span class="cui-cloud-upload" aria-hidden="true"></span> Upload a map</a>
+                </li>
+                <li class="nav-title">Other</li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/raw"><i class="nav-icon icon-graph"></i> View Raw Data</a>
+                </li>
+            </ul>
+        </nav>
+        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    </div>
+    <main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a href="#">Admin</a>
+            </li>
+            <li class="breadcrumb-item active">Raw Data</li>
+            <!-- Breadcrumb Menu-->
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <h4 class="card-title mb-3">Raw</h4>
+                            </div>
+                            <div class="row">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Entry ID</th>
+                                        <th scope="col">Last Time</th>
+                                        <th scope="col">First Time</th>
+                                        <th scope="col">Account ID</th>
+                                        <th scope="col">Beacon ID</th>
+                                        <th scope="col">Mac Address</th>
+                                        <th scope="col">Manufacturer</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="entry: ${entryList}">
+                                        <td th:text="${entry.entryId}"></td>
+                                        <td th:text="${entry.lastTime}"></td>
+                                        <td th:text="${entry.firstTime}"></td>
+                                        <td th:text="${entry.accountId}"></td>
+                                        <td th:text="${entry.beaconId}"></td>
+                                        <td th:text="${entry.macAddress}"></td>
+                                        <td th:text="${entry.manufacturer}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<!-- CoreUI and necessary plugins-->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="node_modules/pace-progress/pace.min.js"></script>
+<script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+<script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
+<!-- Plugins and scripts required by this view-->
+<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/filter.js"></script>
+</body>
+</html>
