@@ -1,0 +1,13 @@
+{
+    "bucketName": "beacon-netdb5b66069a564828b8dd951265c3969e",
+    "authPolicyName": "s3_amplify_39b74a46",
+    "unauthPolicyName": "s3_amplify_39b74a46",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}

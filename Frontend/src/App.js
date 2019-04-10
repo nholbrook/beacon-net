@@ -10,54 +10,19 @@ import { faSync } from '@fortawesome/free-solid-svg-icons'
 library.add(faSync);
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isAuthenticated: false
-    };
-  }
-
-  async componentDidMount() {
-    try {
-      await Auth.currentSession();
-      this.userHasAuthenticated(true);
-    }
-    catch(e) {
-      if (e !== 'No current user') {
-        alert(e);
-      }
-    }
-
-    this.setState({ isAuthenticating: false });
-  }
-
-  handleLogout = async event =>  {
-    try {
-      await Auth.signOut();
-      this.userHasAuthenticated(false);
-    }
-    catch(e) {
-      alert(e);
-    }
-  }
-
-  userHasAuthenticated = authenticated => {
-    this.setState({ isAuthenticated: authenticated });
+  constructor(props, context) {
+    super(props, context);
   }
 
   render() {
-    const childProps = {
-      isAuthenticated: this.state.isAuthenticated,
-      userHasAuthenticated: this.userHasAuthenticated,
-      handleLogout: this.handleLogout
-    };
-
-    return (
-      !this.state.isAuthenticating &&
-      <Routes />
-    );
+    if (this.props.authState == "signedIn") {
+      return (
+        <Routes />
+      );
+    } else {
+      return null;
+    }
   }
 }
 
-export default withAuthenticator(App, true);
+export default withAuthenticator(App);

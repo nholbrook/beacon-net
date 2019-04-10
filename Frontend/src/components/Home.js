@@ -1,257 +1,277 @@
 import React, { Component, Fragment } from 'react';
-import { Table, Navbar, NavItem, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Table, Navbar, NavItem, Nav, Form, FormControl, Button, Modal, ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-
+import axios from 'axios';
+import Auth from '@aws-amplify/auth';
+import L, { HeatmapOverlay } from 'leaflet';
 import './Home.css';
+var dateFormat = require('dateformat');
 
 export default class Home extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+    this.state = {
+      show: false,
+      beacons: [],
+      summaries: [],
+      username: ""
+    };
+
+    axios.get('http://beaconnet.co/summaries')
+      .then(response => {
+        var json = response.data;
+        this.setState({summaries: response.data });
+        console.log(this.state.summaries);
+
+        var points = [];
+        var max = 0;
+
+        for(var i = 0; i < json.length; i++) {
+            var obj = json[i];
+            max = Math.max(max, obj.count);
+            var point = {
+                x: parseInt(obj.y, 10) * -1,
+                y: parseInt(obj.x, 10),
+                value: parseInt(obj.count, 10)
+            };
+            points.push(point);
+        }
+
+        var data = {
+          max: max,
+          data: points
+        };
+
+        console.log(data);
+
+
+    })
+  }
+
+  loadData() {
+    Auth.currentAuthenticatedUser({}).then(user => {
+      this.setState({username: user.username});
+
+      axios.get('http://beaconnet.co/beacons?accountId=' + this.state.username)
+        .then(response => {
+          this.setState({beacons: response.data })
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
+
+  filterDataDay() {
+    var now = new Date();
+    var endTime = dateFormat(now, 'yyyy-mm-dd&20HH:MM:ss.L');
+    var start = new Date();
+    start.setHours(now.getHours()-1);
+    var startTime = dateFormat(start, 'yyyy-mm-dd&20HH:MM:ss.L');
+    console.log('http://beaconnet.co/summaries?startTime=' + startTime + '&endTime=' + endTime);
+    axios.get('http://beaconnet.co/summaries?startTime=' + startTime + '&endTime=' + endTime)
+      .then(response => {
+        if (response.data != null) {
+          this.setState({summaries: response.data });
+          console.log(this.state.summaries);
+        }
+    });
+  }
+
+  logout() {
+    Auth.signOut()
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+  }
+
   render() {
+    const { beacons } = this.state;
     return (
       <div className="Home">
-      <Navbar bg="light" expand="lg">
-        <div className="container">
-          <Navbar.Brand href="#home">AutoClose</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <header className="app-header navbar">
-                <a className="navbar-brand" href="#">
-                <h4 className="logo mb-0">BEACON NET</h4>
+        <header className="app-header navbar">
+          <a className="navbar-brand pl-3" href="#">
+            <img className="img-fluid" src="icons/beaconnet.png" alt="CoreUI Logo"></img>
+          </a>
+          <Form inline>
+            Welcome&nbsp;<b>{this.state.username}</b>!
+            <Button type="submit" className="m-3" onClick={this.logout}>Logout</Button>
+          </Form>
+      </header>
+      <div className="app-body">
+        <main className="main">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">Home</li>
+            <li className="breadcrumb-item active">Dashboard</li>
+            <li className="breadcrumb-menu d-md-down-none">
+              <div className="btn-group" role="group" aria-label="Button group"></div>
+            </li>
+          </ol>
+          <div className="container-fluid">
+            <div className="animated fadeIn">
 
-                  <img className="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo"></img>
-                </a>
-
-                <ul className="nav navbar-nav ml-auto">
-                  <li className="nav-item d-md-down-none">
-                    <a className="nav-link" href="#">
-                    </a>
-                  </li>
-                  <li className="nav-item dropdown">
-                    <a className="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                      <img className="img-avatar" src="icons/avatar.png" alt="admin@bootstrapmaster.com"></img>
-                    </a>
-                    <div className="dropdown-menu dropdown-menu-right">
-                      <div className="dropdown-header text-center">
-                        <strong>Account</strong>
-                      </div>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="login.html">
-                      <i className="fa fa-lock"></i><span className="cui-account-logout" aria-hidden="true"></span> Logout
-                    </a>
+              <div className="card">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-5">
+                      <h4 className="card-title mb-0">Traffic</h4>
+                      <div className="small text-muted"><span className="cui-calendar" aria-hidden="true"></span> Date</div>
+                      <div className="small text-muted"><span className="cui-map" aria-hidden="true"></span> Map: Map name</div>
+                      <div className="small text-muted" id="filterdisplaytitle"><strong>Filter:</strong> None</div>
+                    </div>
+                    <div className="col-sm-7 d-none d-md-block">
+                      <Button className="float-right" variant="primary" onClick={this.handleShow}>
+                        Filter
+                      </Button>
+                      <ButtonToolbar className="float-right">
+                        <ToggleButtonGroup type="radio" name="options" defaultValue={2}>
+                          <ToggleButton value={1} onClick={this.filterDataDay}>Day</ToggleButton>
+                          <ToggleButton value={2} onClick={this.filterDataMonth}>Month</ToggleButton>
+                          <ToggleButton value={3} onClick={this.filterDataYear}>Year</ToggleButton>
+                        </ToggleButtonGroup>
+                      </ButtonToolbar>
+                    </div>
                   </div>
-                </li>
-              </ul>
-
-            </header>
-            <div className="app-body">
-              <div className="sidebar">
-                  <nav className="sidebar-nav">
-                      <ul className="nav">
-                          <li className="nav-item">
-                              <a className="nav-link active" href="/">
-                                  <i className="nav-icon icon-speedometer"></i> Dashboard
-                              </a>
-                          </li>
-                          <li className="nav-title">Map Management</li>
-                          <li className="nav-item">
-                              <a className="nav-link" href="#"><span className="cui-map" aria-hidden="true"></span> 2nd Level Concourse</a>
-                          </li>
-                          <li className="nav-item">
-                              <a className="nav-link" href="#"><span className="cui-map" aria-hidden="true"></span> Map 2</a>
-                          </li>
-                          <li className="nav-title">Beacon Management</li>
-                          <li className="nav-item">
-                            <a className="nav-link" href="place-beacon"><span className="cui-location-pin" aria-hidden="true"></span> Place and rename beacons</a>
-                          </li>
-                          <li className="nav-item">
-                            <a className="nav-link" href="beacon-connection"><span className="cui-rss" aria-hidden="true"></span> View beacon connection status</a>
-                          </li>
-                          <li className="nav-item">
-                            <a className="nav-link" href="upload-map"><span className="cui-cloud-upload" aria-hidden="true"></span> Upload a map</a>
-                          </li>
-                          <li className="nav-title">Other</li>
-                          <li className="nav-item">
-                              <a className="nav-link" href="/raw"><i className="nav-icon icon-graph"></i> View Raw Data</a>
-                          </li>
-                      </ul>
-                  </nav>
-                <button className="sidebar-minimizer brand-minimizer" type="button"></button>
-              </div>
-              <main className="main">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">Home</li>
-                  <li className="breadcrumb-item active">Dashboard</li>
-                  <li className="breadcrumb-menu d-md-down-none">
-                    <div className="btn-group" role="group" aria-label="Button group"></div>
-                  </li>
-                </ol>
-                <div className="container-fluid">
-                  <div className="animated fadeIn">
-
-                    <div className="card">
-                      <div className="card-body">
-                        <div className="row">
-                          <div className="col-sm-5">
-                            <h4 className="card-title mb-0">Traffic</h4>
-                            <div className="small text-muted"><span className="cui-calendar" aria-hidden="true"></span> Date</div>
-                            <div className="small text-muted"><span className="cui-map" aria-hidden="true"></span> Map: Map name</div>
-                            <div className="small text-muted" id="filterdisplaytitle"><strong>Filter:</strong> None</div>
-                          </div>
-                          <div className="col-sm-7 d-none d-md-block">
-
-                            <div className="btn btn-primary float-right" data-toggle="modal" data-target="#filterModal">
-                              <span className="cui-chevron-bottom" aria-hidden="true"></span> Filter
-                            </div>
-                            <div className="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
-                              <label className="btn btn-outline-secondary">
-                                <input id="option1" type="radio" name="options" autoComplete="off"> Day</input>
-                              </label>
-                              <label className="btn btn-outline-secondary active">
-                                <input id="option2" type="radio" name="options" autoComplete="off" defaultChecked> Month</input>
-                              </label>
-                              <label className="btn btn-outline-secondary">
-                                <input id="option3" type="radio" name="options" autoComplete="off"> Year</input>
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="chart-wrapper">
-                            <div id="photo" style="height: 500px; width: 100%"></div>
-                        </div>
+                  <div className="chart-wrapper">
+                      <div id="photo" style={{height: '500px', width: '100%'}}></div>
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <div className="row text-center">
+                    <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                      <div className="text-muted">Congested</div>
+                      <strong>80%</strong>
+                      <div className="progress progress-xs mt-2">
+                        <div className="progress-bar bg-congested" role="progressbar" style={{width: '100%'}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <div className="card-footer">
-                        <div className="row text-center">
-                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div className="text-muted">Congested</div>
-                            <strong>80%</strong>
-                            <div className="progress progress-xs mt-2">
-                              <div className="progress-bar bg-congested" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div className="text-muted">Very Heavy</div>
-                            <strong>70%</strong>
-                            <div className="progress progress-xs mt-2">
-                              <div className="progress-bar bg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div className="text-muted">Heavy</div>
-                            <strong>60%</strong>
-                            <div className="progress progress-xs mt-2">
-                              <div className="progress-bar bg-avg-heavy" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div className="text-muted">Average</div>
-                            <strong>15%</strong>
-                            <div className="progress progress-xs mt-2">
-                              <div className="progress-bar bg-avg" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div className="text-muted">Light</div>
-                            <strong>10%</strong>
-                            <div className="progress progress-xs mt-2">
-                              <div className="progress-bar bg-li" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div className="text-muted">Very Light</div>
-                            <strong>5%</strong>
-                            <div className="progress progress-xs mt-2">
-                              <div className="progress-bar bg-vlight" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                          <div className="col-sm-12 col-md mb-sm-2 mb-0">
-                            <div className="text-muted">Empty</div>
-                            <strong>0.5%</strong>
-                            <div className="progress progress-xs mt-2">
-                              <div className="progress-bar bg-empty" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-                        </div>
+                    </div>
+                    <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                      <div className="text-muted">Very Heavy</div>
+                      <strong>70%</strong>
+                      <div className="progress progress-xs mt-2">
+                        <div className="progress-bar bg-heavy" role="progressbar" style={{width: '100%'}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                      <div className="text-muted">Heavy</div>
+                      <strong>60%</strong>
+                      <div className="progress progress-xs mt-2">
+                        <div className="progress-bar bg-avg-heavy" role="progressbar" style={{width: '100%'}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                      <div className="text-muted">Average</div>
+                      <strong>15%</strong>
+                      <div className="progress progress-xs mt-2">
+                        <div className="progress-bar bg-avg" role="progressbar" style={{width: '100%'}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                      <div className="text-muted">Light</div>
+                      <strong>10%</strong>
+                      <div className="progress progress-xs mt-2">
+                        <div className="progress-bar bg-li" role="progressbar" style={{width: '100%'}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                      <div className="text-muted">Very Light</div>
+                      <strong>5%</strong>
+                      <div className="progress progress-xs mt-2">
+                        <div className="progress-bar bg-vlight" role="progressbar" style={{width: '100%'}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div className="col-sm-12 col-md mb-sm-2 mb-0">
+                      <div className="text-muted">Empty</div>
+                      <strong>0.5%</strong>
+                      <div className="progress progress-xs mt-2">
+                        <div className="progress-bar bg-empty" role="progressbar" style={{width: '100%'}} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </main>
-              <div className="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filtereModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="filtereModalLabel">Filter map locations</h5>
-                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+              </div>
+
+              <div className="card">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-5">
+                      <h4 className="card-title mb-0">Beacon Connection Status</h4>
+                      <div className="small text-muted"><span className="cui-calendar" aria-hidden="true"></span> Place and Rename Beacons</div>
                     </div>
-                    <div className="modal-body">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <form>
-                            <p><label><input className="filtercheckbox" type="checkbox" value="Beacon A" name="locationA">Beacon A</input></label></p>
-                            <p><label><input className="filtercheckbox" type="checkbox" value="Beacon B" name="locationA">Beacon B</input></label></p>
-                            <p><label><input className="filtercheckbox" type="checkbox" value="Beacon C" name="locationA">Beacon C</input></label></p>
-                          </form>
-                        </div>
-                      </div>
+                    <div className="col-sm-7 d-none d-md-block">
+                      <Button className="float-right" variant="primary">
+                        Add New Beacon
+                      </Button>
                     </div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn btn-primary" id="filterbtnapply"><span className="cui-check" aria-hidden="true"></span> Apply filter</button>
-                      <button type="button" className="btn btn-secondary" id="filterbtnclear">Clear filter</button>
-                      <button type="button" className="btn btn-secondary" data-dismiss="modal"><span className="cui-ban" aria-hidden="true"></span> Close</button>
-                    </div>
+                    <div className="p-3 w-100">
+                    <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th>Beacon ID</th>
+                          <th>Name</th>
+                          <th>Last Seen</th>
+                          <th>Map ID</th>
+                          <th>X</th>
+                          <th>Y</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {beacons.map(beacon =>
+                        <tr key={beacon.beaconId}>
+                          <th>{beacon.beaconId}</th>
+                          <th>{beacon.name}</th>
+                          <th>{beacon.lastTime}</th>
+                          <th>{beacon.mapId}</th>
+                          <th>{beacon.x}</th>
+                          <th>{beacon.y}</th>
+                        </tr>
+                      )}
+                      </tbody>
+                  </Table>
                   </div>
                 </div>
               </div>
               </div>
-            </Nav>
-            <Form inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-              <Button variant="outline-success">Search</Button>
+            </div>
+          </div>
+        </main>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Filter Map Locations</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Check inline type="checkbox" label="Beacon A" />
+                <Form.Check inline type="checkbox" label="Beacon B" />
+                <Form.Check inline type="checkbox" label="Beacon C" />
+              </Form.Group>
             </Form>
-          </Navbar.Collapse>
-        </div>
-      </Navbar>
-      <div className="container pt-5">
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Zipcode</th>
-            <th>Phone Number</th>
-            <th>Email Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Kenneth</td>
-            <td>Parker</td>
-            <td>60607</td>
-            <td>312-421-2164</td>
-            <td>KennethCParker@teleworm.us</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Joseph</td>
-            <td>Hill</td>
-            <td>27313</td>
-            <td>336-674-7948</td>
-            <td>JosephEHill@armyspy.com</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Neil</td>
-            <td>Johnson</td>
-            <td>79852</td>
-            <td>432-371-6116</td>
-            <td>NeilLJohnson@armyspy.com</td>
-          </tr>
-        </tbody>
-      </Table>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+            <Button variant="secondary" onClick={this.clearFilter}>
+              Clear Filter
+            </Button>
+            <Button variant="primary" onClick={this.handleClose}>
+              Apply Filter
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
       </div>
     );

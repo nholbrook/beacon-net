@@ -5,6 +5,7 @@ import java.util.List;
 import com.nickholbrook.beaconnet.model.Entry;
 import com.nickholbrook.beaconnet.service.EntryTableService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,7 @@ public class EntryAPI {
     return entryTableService;
   }
 
+  @CrossOrigin
   @RequestMapping(value = "/entries", method = RequestMethod.GET)
   @ResponseBody
   public List<Entry> getAllEntries() {

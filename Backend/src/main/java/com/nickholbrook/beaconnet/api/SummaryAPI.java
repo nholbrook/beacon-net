@@ -5,6 +5,7 @@ import java.util.List;
 import com.nickholbrook.beaconnet.model.Summary;
 import com.nickholbrook.beaconnet.service.SummaryTableService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ public class SummaryAPI {
 		return summaryTableService;
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "/summaries", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Summary> getAllSummaries() {
@@ -27,6 +29,7 @@ public class SummaryAPI {
 		return summaryList;
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "/summariesRange", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Summary> getSummariesRange(@RequestParam("startTime") String startTime, @RequestParam("endTime") String endTime) {
