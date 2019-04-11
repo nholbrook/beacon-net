@@ -32,7 +32,7 @@ public class SummaryTableService {
 	}
 
 
-	public List<Summary> getSummaries() {
+	public List<Summary> getSummaries(String accountId) {
 		AmazonDynamoDB client = dynamoDBService.getClient();
 		ScanRequest scanRequest = new ScanRequest().withTableName(tableName);
 		ScanResult result = client.scan(scanRequest);
@@ -42,11 +42,12 @@ public class SummaryTableService {
 			List<Map<String, AttributeValue>> itemList = result.getItems();
 			try {
 				for (Map<String, AttributeValue> item : itemList) {
-					System.out.println("item: " + item);
-					Summary info = new Summary();
-					DynamoDBUtil.attributesToObject(info, item);
-					System.out.println("info:" + info);
-					summaryList.add(info);
+					if (item.get("accountId").getS().equals(accountId)) {
+						Summary info = new Summary();
+						DynamoDBUtil.attributesToObject(info, item);
+						System.out.println("info:" + info);
+						summaryList.add(info);
+					}
 				}
 				if (summaryList.size() > 1) {
 					Summary[] infoArray = summaryList.toArray( new Summary[1] );
@@ -63,7 +64,7 @@ public class SummaryTableService {
 		return summaryList;
 	}
 
-	public List<Summary> getSummariesRange(String startTime, String endTime) {
+	public List<Summary> getSummariesRange(String accountId, String startTime, String endTime) {
 		AmazonDynamoDB client = dynamoDBService.getClient();
 		ScanRequest scanRequest = new ScanRequest().withTableName(tableName);
 		ScanResult result = client.scan(scanRequest);
@@ -78,16 +79,19 @@ public class SummaryTableService {
 				List<Map<String, AttributeValue>> itemList = result.getItems();
 				try {
 					for (Map<String, AttributeValue> item : itemList) {
-						try {
-							Date currentDate = dateFormat.parse(item.get("summaryTime").getS());
-							if (!(currentDate.before(startDate)) && !(currentDate.after(endDate))) {
-								System.out.println(startDate.toString() + " | " + currentDate.toString() + " | " + endDate.toString());
-								Summary info = new Summary();
-								DynamoDBUtil.attributesToObject(info, item);
-								summaryList.add(info);
+						System.out.println(item.get("accountId").getS() + " | " + accountId);
+						if (item.get("accountId").getS().equals(accountId)) {
+							try {
+								Date currentDate = dateFormat.parse(item.get("summaryTime").getS());
+								if (!(currentDate.before(startDate)) && !(currentDate.after(endDate))) {
+									System.out.println(startDate.toString() + " | " + currentDate.toString() + " | " + endDate.toString());
+									Summary info = new Summary();
+									DynamoDBUtil.attributesToObject(info, item);
+									summaryList.add(info);
+								}
+							} catch (Exception e) {
+								return null;
 							}
-						} catch (Exception e) {
-							return null;
 						}
 					}
 					if (summaryList.size() > 1) {

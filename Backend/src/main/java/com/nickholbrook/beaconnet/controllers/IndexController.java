@@ -15,7 +15,7 @@ public class IndexController extends SummaryControllerBase {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getIndex(Model model) {
-		List<Summary> summaryList = getSummaryTableService().getSummaries();
+		List<Summary> summaryList = getSummaryTableService().getSummaries("41d4bac2-cd9f-42dd-852b-003703fc6bca");
 		if (summaryList != null && summaryList.size() > 0) {
 			model.addAttribute(SUMMARY_LIST, summaryList);
 		}

@@ -24,16 +24,16 @@ public class SummaryAPI {
 	@CrossOrigin
 	@RequestMapping(value = "/summaries", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Summary> getAllSummaries() {
-		List<Summary> summaryList = getSummaryTableService().getSummaries();
+	public List<Summary> getAllSummaries(@RequestParam("accountId") String accountId) {
+		List<Summary> summaryList = getSummaryTableService().getSummaries(accountId);
 		return summaryList;
 	}
 
 	@CrossOrigin
 	@RequestMapping(value = "/summariesRange", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Summary> getSummariesRange(@RequestParam("startTime") String startTime, @RequestParam("endTime") String endTime) {
-		List<Summary> summaryList = getSummaryTableService().getSummariesRange(startTime, endTime);
+	public List<Summary> getSummariesRange(@RequestParam("startTime") String startTime, @RequestParam("endTime") String endTime, @RequestParam("accountId") String accountId) {
+		List<Summary> summaryList = getSummaryTableService().getSummariesRange(accountId, startTime, endTime);
 		return summaryList;
 	}
 
