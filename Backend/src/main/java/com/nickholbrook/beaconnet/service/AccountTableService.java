@@ -19,12 +19,13 @@ import com.nickholbrook.beaconnet.model.Summary;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SummaryTableService {
+public class AccountTableService {
+
 	private static DynamoDBService dynamoDBService;
 	final private Logger log;
 	private final String tableName = "beacon-net-entries-summary";
 
-	public SummaryTableService() {
+	public AccountTableService() {
 		log = Logger.getLogger( this.getClass().getName() );
 		if (dynamoDBService == null) {
 			dynamoDBService = new DynamoDBService();
@@ -32,7 +33,7 @@ public class SummaryTableService {
 	}
 
 
-	public List<Summary> getSummaries(String accountId) {
+	public List<Summary> getAccount(String accountId) {
 		AmazonDynamoDB client = dynamoDBService.getClient();
 		ScanRequest scanRequest = new ScanRequest().withTableName(tableName);
 		ScanResult result = client.scan(scanRequest);
@@ -64,51 +65,6 @@ public class SummaryTableService {
 		return summaryList;
 	}
 
-	public List<Summary> getSummariesRange(String accountId, String startTime, String endTime) {
-		AmazonDynamoDB client = dynamoDBService.getClient();
-		ScanRequest scanRequest = new ScanRequest().withTableName(tableName);
-		ScanResult result = client.scan(scanRequest);
-		List<Summary> summaryList = new ArrayList<Summary>();
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		try {
-			Date startDate = dateFormat.parse(startTime);
-			Date endDate = dateFormat.parse(endTime);
-
-			if (result.getCount() > 0) {
-				List<Map<String, AttributeValue>> itemList = result.getItems();
-				try {
-					for (Map<String, AttributeValue> item : itemList) {
-						System.out.println(item.get("accountId").getS() + " | " + accountId);
-						if (item.get("accountId").getS().equals(accountId)) {
-							try {
-								Date currentDate = dateFormat.parse(item.get("summaryTime").getS());
-								if (!(currentDate.before(startDate)) && !(currentDate.after(endDate))) {
-									System.out.println(startDate.toString() + " | " + currentDate.toString() + " | " + endDate.toString());
-									Summary info = new Summary();
-									DynamoDBUtil.attributesToObject(info, item);
-									summaryList.add(info);
-								}
-							} catch (Exception e) {
-								return null;
-							}
-						}
-					}
-					if (summaryList.size() > 1) {
-						Summary[] infoArray = summaryList.toArray( new Summary[1] );
-						summaryList.clear();
-						summaryList.addAll(Arrays.asList( infoArray ) );
-					}
-				}
-				catch (Exception e) {
-					log.severe("getSummaries: " + e.getLocalizedMessage());
-					return null;
-				}
-			}
-		} catch (Exception e) {
-			return null;
-		}
-		return summaryList;
-	}
 
 }

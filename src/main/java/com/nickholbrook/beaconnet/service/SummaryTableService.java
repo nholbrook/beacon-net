@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.amazonaws.Response;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
@@ -59,5 +60,28 @@ public class SummaryTableService {
 		}
 		return summaryList;
 	}
+
+
+
+	/*public void  addSummaries(){
+
+		if(getSummaries()>0){
+
+			for(int i=0; i<15; i++){
+
+				List<Summary> ids=new ArrayList<>();
+				ids.add(summaryId);
+
+			}
+		}
+
+
+	}*/
+
+
+	/*public Response Endpoints(){
+
+		return  Response.ok().build();
+	}*/
 
 }

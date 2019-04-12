@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AccountAPI {
+
 	private final static BeaconTableService beaconTableService = new BeaconTableService();
 	protected static final String BEACON_LIST = "beaconList";
 	protected BeaconTableService getBeaconTableService() {
