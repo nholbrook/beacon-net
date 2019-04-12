@@ -9,51 +9,34 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-@DynamoDBTable(tableName = "beacon-net-beacons")
+@DynamoDBTable(tableName = "beacon-net-accounts")
 public class Account {
 
 	@Pattern(regexp = Util.UUID_PATTERN, message = "TokenFormatError")
-	private String beaconId;
-	@Pattern(regexp = Util.UUID_PATTERN, message = "TokenFormatError")
 	private String accountId;
-	@Pattern(regexp = Util.UUID_PATTERN, message = "TokenFormatError")
-	private String mapId;
+	@NotBlank(message="A account type is required")
+	private String accountType;
 	@NotBlank(message="A name is required")
 	private String name;
-	@NotBlank(message="A x coord is required")
-	private String x;
-	@NotBlank(message="A y coord is required")
-	private String y;
-	@NotBlank(message="A last time is required")
-	private String lastTime;
+	@NotBlank(message="Options is required")
+	private String options;
 
-	@DynamoDBHashKey(attributeName = "beaconId")
-	public String getBeaconId() { return beaconId; }
-	public void setBeaconId(String beaconId) { this.beaconId = trimString( beaconId ); }
-
-	@DynamoDBAttribute(attributeName="accountId")
+	@DynamoDBHashKey(attributeName="accountId")
 	public String getAccountId() { return accountId; }
 	public void setAccountId(String accountId) { this.accountId = trimString( accountId ); }
-
-	@DynamoDBAttribute(attributeName="mapId")
-	public String getMapId() { return mapId; }
-	public void setMapId(String mapId) { this.mapId = trimString( mapId ); }
 
 	@DynamoDBAttribute(attributeName="name")
 	public String getName() { return name; }
 	public void setName(String name) { this.name = trimString( name ); }
 
-	@DynamoDBAttribute(attributeName="x")
-	public String getX() { return x; }
-	public void setX(String x) { this.x = trimString( x ); }
+	@DynamoDBAttribute(attributeName="accountType")
+	public String getAccountType() { return accountType; }
+	public void setAccountType(String accountType) { this.accountType = trimString( accountType ); }
 
-	@DynamoDBAttribute(attributeName="y")
-	public String getY() { return y; }
-	public void setY(String y) { this.y = trimString( y ); }
+	@DynamoDBAttribute(attributeName="options")
+	public String getOptions() { return options; }
+	public void setOptions(String y) { this.options = trimString( options ); }
 
-	@DynamoDBRangeKey(attributeName="lastTime")
-	public String getLastTime() { return lastTime; }
-	public void setLastTime(String lastTime) { this.lastTime = trimString( lastTime ); }
 
 	@DynamoDBIgnore
 	private String trimString(String input) {
@@ -67,7 +50,7 @@ public class Account {
 	@Override
 	@DynamoDBIgnore
 	public String toString() {
-		return "Beacon [beaconId=" + beaconId + ", accountId=" + accountId + ", mapId=" + mapId + ", name=" + name + ", x=" + x + ", y=" + y + ", lastTime=" + lastTime + "]";
+		return "Beacon [accountId=" + accountId + ",name=" + name + ", options=" + options + ", accountType=" + accountType + "]";
 	}
 
 	@Override
@@ -83,7 +66,7 @@ public class Account {
 			return false;
 		}
 		Account other = (Account) obj;
-		if (this.beaconId != other.beaconId) {
+		if (this.accountId != other.accountId) {
 			return false;
 		}
 		return true;
