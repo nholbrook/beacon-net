@@ -2,8 +2,10 @@ package com.nickholbrook.beaconnet.api;
 
 import java.util.List;
 
+import com.nickholbrook.beaconnet.model.Account;
 import com.nickholbrook.beaconnet.model.Beacon;
 import com.nickholbrook.beaconnet.model.Entry;
+import com.nickholbrook.beaconnet.service.AccountTableService;
 import com.nickholbrook.beaconnet.service.BeaconTableService;
 import com.nickholbrook.beaconnet.service.DynamoDBAuthService;
 
@@ -21,17 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AccountAPI {
 
-	private final static BeaconTableService beaconTableService = new BeaconTableService();
-	protected static final String BEACON_LIST = "beaconList";
-	protected BeaconTableService getBeaconTableService() {
-		return beaconTableService;
+	private final static AccountTableService AccountTableService = new AccountTableService();
+	protected static final String Account_LIST = "accountList";
+	protected AccountTableService getAccountTableService() {
+		return AccountTableService;
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "/beacons", method = RequestMethod.GET)
+	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Beacon> getAllBeacons(@RequestParam("accountId") String accountId) {
-		List<Beacon> beaconList = getBeaconTableService().getAllBeacons(accountId); //"41d4bac2-cd9f-42dd-852b-003703fc6bca"
-		return beaconList;
+	public List<Account> getAccount(@RequestParam("accountId") String accountId) {
+		List<Account> AccountList = getAccountTableService().getAccount(accountId); //"41d4bac2-cd9f-42dd-852b-003703fc6bca"
+		return AccountList;
 	}
 }
