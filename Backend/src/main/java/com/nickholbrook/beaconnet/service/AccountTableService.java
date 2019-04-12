@@ -64,7 +64,4 @@ public class AccountTableService {
 		}
 		return summaryList;
 	}
-
-
-
 }
