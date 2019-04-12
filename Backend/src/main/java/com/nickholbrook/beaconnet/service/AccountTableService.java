@@ -14,6 +14,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.nickholbrook.beaconnet.dynamodb.DynamoDBUtil;
+import com.nickholbrook.beaconnet.model.Account;
 import com.nickholbrook.beaconnet.model.Summary;
 
 import org.springframework.stereotype.Service;
@@ -33,35 +34,35 @@ public class AccountTableService {
 	}
 
 
-	public List<Summary> getAccount(String accountId) {
+	public List<Account> getAccount(String accountId) {
 		AmazonDynamoDB client = dynamoDBService.getClient();
 		ScanRequest scanRequest = new ScanRequest().withTableName(tableName);
 		ScanResult result = client.scan(scanRequest);
-		List<Summary> summaryList = new ArrayList<Summary>();
+		List<Account> accountList = new ArrayList<Account>();
 		if (result.getCount() > 0) {
 			// The itemList is a set of one or more DynamoDB row values stored in a attribute name/value map.
 			List<Map<String, AttributeValue>> itemList = result.getItems();
 			try {
 				for (Map<String, AttributeValue> item : itemList) {
 					if (item.get("accountId").getS().equals(accountId)) {
-						Summary info = new Summary();
+						Account info = new Account();
 						DynamoDBUtil.attributesToObject(info, item);
 						System.out.println("info:" + info);
-						summaryList.add(info);
+						accountList.add(info);
 					}
 				}
-				if (summaryList.size() > 1) {
-					Summary[] infoArray = summaryList.toArray( new Summary[1] );
+				if (accountList.size() > 1) {
+					Account[] infoArray = accountList.toArray( new Account[1] );
 					System.out.println("0:" + infoArray[0] + " 1:" + infoArray[1]);
 					//Arrays.sort(infoArray, new SummaryComparator() );
-					summaryList.clear();
-					summaryList.addAll(Arrays.asList( infoArray ) );
+					accountList.clear();
+					accountList.addAll(Arrays.asList( infoArray ) );
 				}
 			}
 			catch (ReflectiveOperationException e) {
-				log.severe("getSummaries: " + e.getLocalizedMessage());
+				log.severe("getAccounts: " + e.getLocalizedMessage());
 			}
 		}
-		return summaryList;
+		return accountList;
 	}
 }
