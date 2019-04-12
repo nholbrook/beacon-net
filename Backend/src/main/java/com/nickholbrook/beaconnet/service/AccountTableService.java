@@ -24,7 +24,7 @@ public class AccountTableService {
 
 	private static DynamoDBService dynamoDBService;
 	final private Logger log;
-	private final String tableName = "beacon-net-entries-account";
+	private final String tableName = "beacon-net-accounts";
 
 	public AccountTableService() {
 		log = Logger.getLogger( this.getClass().getName() );
