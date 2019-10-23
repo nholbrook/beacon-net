@@ -29,12 +29,12 @@ export default class Home extends Component {
     Auth.currentAuthenticatedUser({}).then(user => {
       this.setState({username: user.username});
 
-      axios.get('http://beaconnet.co/beacons?accountId=' + this.state.username)
+      axios.get('http://api.beaconnet.co/beacons?accountId=' + this.state.username)
         .then(response => {
           this.setState({beacons: response.data });
       });
 
-      axios.get('http://beaconnet.co/summaries?accountId=' + this.state.username)
+      axios.get('http://api.beaconnet.co/summaries?accountId=' + this.state.username)
         .then(response => {
           var json = response.data;
           this.setState({summaries: response.data });
@@ -69,7 +69,7 @@ export default class Home extends Component {
     var start = new Date();
     start.setHours(now.getHours()-1);
     var startTime = dateFormat(start, 'yyyy-mm-dd&20HH:MM:ss.L');
-    axios.get('http://beaconnet.co/summaries?accountId=' + this.state.username + '&startTime=' + startTime + '&endTime=' + endTime)
+    axios.get('http://api.beaconnet.co/summaries?accountId=' + this.state.username + '&startTime=' + startTime + '&endTime=' + endTime)
       .then(response => {
         if (response.data != null) {
           this.setState({summaries: response.data });
